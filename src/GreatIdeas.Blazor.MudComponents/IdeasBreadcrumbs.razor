@@ -1,0 +1,12 @@
+﻿<MudBreadcrumbs Items="Items">
+	<SeparatorTemplate>
+		<MudIcon Icon="@Icons.Material.Filled.ArrowForward" Size="Size.Small" />
+	</SeparatorTemplate>
+</MudBreadcrumbs>
+	<MudDivider></MudDivider>
+
+@code{
+	 [Parameter]
+     public List<BreadcrumbItem> Items { get; set; }
+
+}

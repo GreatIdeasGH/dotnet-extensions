@@ -1,0 +1,120 @@
+﻿@typeparam T
+
+<div class="d-flex">
+    <MudDatePicker Date="DateTime_" DateChanged="DateChanged" DateFormat="@datePattern" Editable="true" />
+    <MudTimePicker Time="@(DateTime_.HasValue ? DateTime_.Value.TimeOfDay : null)" TimeChanged="TimeChanged" AmPm="timeAmPm" Editable="true" />
+</div>
+
+@*
+@code {
+    [Parameter] public T Value { get; set; }
+    [Parameter] public EventCallback<T> ValueChanged { get; set; }
+
+    string datePattern
+    {
+        get
+        {
+            return CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
+        }
+    }
+
+    bool timeAmPm
+    {
+        get
+        {
+            return CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern.EndsWith("tt");
+        }
+    }
+
+    DateTime? dateTime;
+    Type type;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        type = Value.GetType();
+        if (type == typeof(DateTimeOffset?) || type == typeof(DateTimeOffset))
+        {
+            PropertyInfo pi = type.GetProperty("LocalDateTime");
+            dateTime = (DateTime?)pi.GetValue(Value);
+        }
+        else if (type == typeof(DateTime?) || type == typeof(DateTime))
+        {
+            object dtobj = (object)Value;
+            dateTime = (DateTime?)dtobj;
+        }
+        else
+        {
+            throw new InvalidOperationException("Only DateTime and DateTimeOffset types are supported");
+        }
+
+        await base.OnParametersSetAsync();
+    }
+
+    async Task DateChanged(DateTime? dt)
+    {
+        if (dt.HasValue)
+        {
+            dateTime = new DateTime(
+                dt.Value.Year,
+                dt.Value.Month,
+                dt.Value.Day,
+                dateTime.HasValue ? dateTime.Value.Hour : 0,
+                dateTime.HasValue ? dateTime.Value.Minute : 0,
+                0
+            );
+
+            await DateTimeChanged();
+        }
+        else
+        {
+            dateTime = null;
+            await ValueChanged.InvokeAsync(default(T));
+        }
+    }
+
+    async Task TimeChanged(TimeSpan? ts)
+    {
+        if(ts.HasValue)
+        {
+            dateTime = new DateTime(
+                dateTime.HasValue ? dateTime.Value.Year : DateTime.Now.Year,
+                dateTime.HasValue ? dateTime.Value.Month : DateTime.Now.Month,
+                dateTime.HasValue ? dateTime.Value.Day : DateTime.Now.Day,
+                ts.Value.Hours,
+                ts.Value.Minutes,
+                0
+            );
+
+            await DateTimeChanged();
+        }
+        else
+        {
+            dateTime = null;
+            await ValueChanged.InvokeAsync(default(T));
+        }
+    }
+
+    async Task DateTimeChanged()
+    {
+        if (type == typeof(DateTimeOffset) || type == typeof(DateTimeOffset?))
+        {
+            TimeZoneInfo tzi = TimeZoneInfo.Local;
+            DateTimeOffset dateTimeOffset = new DateTimeOffset(
+                dateTime.Value.Year,
+                dateTime.Value.Month,
+                dateTime.Value.Day,
+                dateTime.Value.Hour,
+                dateTime.Value.Minute,
+                0,
+                tzi.GetUtcOffset(dateTime.Value)
+                );
+            object dtobj = (object)dateTimeOffset;
+            await ValueChanged.InvokeAsync((T)dtobj);
+        }
+        else if (type == typeof(DateTime) || type == typeof(DateTime?))
+        {
+            object dtobj = (object)dateTime;
+            await ValueChanged.InvokeAsync((T)dtobj);
+        }
+    }*@
+}

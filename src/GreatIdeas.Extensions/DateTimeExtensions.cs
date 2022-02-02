@@ -3,12 +3,12 @@
 public static class DateTimeExtensions
 {
     /// <summary>
-    /// Generates Random Dates within a start date and ending date.
+    /// Generates Random Dates with a start date and ending date with DateOnly type.
     /// </summary>
     /// <param name="startDate"></param>
     /// <param name="endDate"></param>
     /// <returns></returns>
-    public static DateOnly GenerateRandomDate(DateOnly startDate, DateOnly endDate)
+    public static DateOnly GenerateRandomDateOnly(DateOnly startDate, DateOnly endDate)
     {
         Random random = new Random();
         int range;
@@ -25,9 +25,32 @@ public static class DateTimeExtensions
 
         return startDate.AddDays(random.Next(range));
     }
+    
+    /// <summary>
+    /// Generates Random DateTime with a start date and ending date with DateTime type.
+    /// </summary>
+    /// <param name="startDate"></param>
+    /// <param name="endDate"></param>
+    /// <returns></returns>
+    public static DateTime GenerateRandomDateTime(DateTime startDate, DateTime endDate)
+    {
+        Random random = new Random();
+        int range;
+        if (startDate > endDate)
+        {
+            range = (startDate - endDate).Days;
+        }
+        else
+        {
+            range = (endDate - startDate).Days;
+        }
+
+        return startDate.AddDays(random.Next(range));
+    }
 
 
-    public static string PositionDate(this DateTime? value)
+
+    public static string PositionDate(DateTime? value)
     {
         var converter = value!.Value.Day.ToString();
         string position;
@@ -36,37 +59,37 @@ public static class DateTimeExtensions
         if (value.Value.Day is 11 or 12 or 13)
         {
             position = $"th";
-            positionalDate = DateTimeExtensions.GetDate(value, position);
+            positionalDate = GetDate(value, position);
             return positionalDate;
         }
 
         if (converter.EndsWith('1'))
         {
             position = $"st";
-            positionalDate = DateTimeExtensions.GetDate(value, position);
+            positionalDate = GetDate(value, position);
             return positionalDate;
         }
 
         if (converter.EndsWith('2'))
         {
             position = $"nd";
-            positionalDate = DateTimeExtensions.GetDate(value, position);
+            positionalDate = GetDate(value, position);
             return positionalDate;
         }
 
         if (converter.EndsWith('3'))
         {
             position = $"rd";
-            positionalDate = DateTimeExtensions.GetDate(value, position);
+            positionalDate = GetDate(value, position);
             return positionalDate;
         }
 
         position = $"th";
-        positionalDate = DateTimeExtensions.GetDate(value, position);
+        positionalDate = GetDate(value, position);
         return positionalDate;
     }
-
-    public static string PositionDate(this DateTime value)
+    
+    public static string PositionDate(DateTime value)
     {
         var converter = value!.Day.ToString();
         string position;
@@ -75,36 +98,35 @@ public static class DateTimeExtensions
         if (value.Day is 11 or 12 or 13)
         {
             position = $"th";
-            positionalDate = DateTimeExtensions.GetDate(value, position);
+            positionalDate = GetDate(value, position);
             return positionalDate;
         }
 
         if (converter.EndsWith('1'))
         {
             position = $"st";
-            positionalDate = DateTimeExtensions.GetDate(value, position);
+            positionalDate = GetDate(value, position);
             return positionalDate;
         }
 
         if (converter.EndsWith('2'))
         {
             position = $"nd";
-            positionalDate = DateTimeExtensions.GetDate(value, position);
+            positionalDate = GetDate(value, position);
             return positionalDate;
         }
 
         if (converter.EndsWith('3'))
         {
             position = $"rd";
-            positionalDate = DateTimeExtensions.GetDate(value, position);
+            positionalDate = GetDate(value, position);
             return positionalDate;
         }
 
         position = $"th";
-        positionalDate = DateTimeExtensions.GetDate(value, position);
+        positionalDate = GetDate(value, position);
         return positionalDate;
     }
-
 
     private static string GetDate(DateTime? date, string position)
     {

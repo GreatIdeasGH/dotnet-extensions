@@ -1,0 +1,16 @@
+<PageTitle>@Title | @ApplicationName</PageTitle>
+
+<HeadContent>
+    <meta name="description" content="@Description" />
+</HeadContent>
+
+@code {
+    
+    [Parameter] public string? Title { get; set; }
+
+    [Parameter]
+    public string? Description { get; set; }
+
+    [Parameter]
+    public string? ApplicationName { get; set; }
+}

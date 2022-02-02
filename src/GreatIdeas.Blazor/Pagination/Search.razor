@@ -1,0 +1,8 @@
+﻿<section>
+    <input type="search" 
+           class="form-control form-control-sm" 
+           placeholder="Search ..." 
+           @bind-value="@SearchTerm"
+           @bind:event="oninput"
+           @onkeyup="SearchChanged" />
+</section>

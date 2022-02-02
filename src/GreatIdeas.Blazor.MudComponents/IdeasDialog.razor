@@ -1,0 +1,13 @@
+﻿@inherits IdeasDialogBase
+
+<MudDialog>
+    <DialogContent>     
+        <MudText>@ContentText</MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Warning" OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="@Color" Variant="MudBlazor.Variant.Filled" OnClick="Submit">@ButtonText</MudButton>
+    </DialogActions>
+</MudDialog>
+
+

@@ -3,20 +3,31 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>disable</Nullable>        
-        <Version>1.1.7</Version>
-        <Description>Generic Extensions for data types</Description>
+        <Nullable>disable</Nullable>
+        <Version>2.1.10</Version>
+        <Description>Repository pattern for various actions including paginations with EntityframeworkCore</Description>
         <Authors>Gerald Maale</Authors>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <PackageTags>DateTime, string, Enum, File Paths, Paging metadata</PackageTags>
+        <PackageTags>AspNetCore, Mapster, EntityframeworkCore, Pagination</PackageTags>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Mapster" Version="7.2.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
+      <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.15" />
+    </ItemGroup>
+
 	<ItemGroup>
 		<None Include="..\..\LICENSE" Pack="true" Visible="false" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\GreatIdeas.Extensions\GreatIdeas.Extensions.csproj" />
 	</ItemGroup>
 
 </Project>

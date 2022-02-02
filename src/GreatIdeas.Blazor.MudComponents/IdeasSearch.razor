@@ -1,0 +1,17 @@
+﻿@inherits IdeasSearchBase
+
+
+<MudTextField T="string"
+              Placeholder="Search"
+              Adornment="Adornment.Start"
+              AdornmentIcon="@Icons.Material.Filled.Search"
+              IconSize="Size.Medium"
+              Immediate="true"
+              Clearable="true"
+              Class="mb-5"
+              AutoFocus="true"
+              OnClearButtonClick="@ClearSearch"
+              @bind-Value="@SearchTerm"
+              OnKeyUp="SearchChanged"
+              OnKeyDown="SearchChanged"/>
+              

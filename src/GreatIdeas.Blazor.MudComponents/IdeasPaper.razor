@@ -1,0 +1,25 @@
+﻿@inherits IdeasComponentBase
+
+<MudItem xs="@xs" sm="@sm" md="@md" lg="@lg">
+    <MudPaper Class="pa-4" Elevation=2>
+        <MudItem>
+            <div class="d-flex align-center">
+                @if (ShowIcon)
+                {
+                    <MudIcon Icon=@Icon Size="Size.Medium" Class="mr-2"/>
+                    <MudText Typo="Typo.h6">@Title</MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">@Title</MudText>
+                }
+            </div>
+        </MudItem>
+        <div>
+            <MudText Typo="Typo.body2" Class="d-flex">@SubTitle</MudText>
+        </div>
+        
+        @Content
+    </MudPaper>
+</MudItem>
+

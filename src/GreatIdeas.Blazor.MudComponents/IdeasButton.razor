@@ -1,0 +1,27 @@
+﻿
+ <MudTooltip Text="@TooltipText">
+<MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+        <MudButton StartIcon="@Icon"
+                   Variant="@Variant"
+                   Color="@Color"
+                   Disabled="@Disabled"
+                   OnClick=@OnClick>
+            @Caption
+        </MudButton>
+    </MudHidden>
+</MudTooltip>
+ 
+ <MudTooltip Text="@TooltipText">
+     <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+         <MudIconButton Icon="@Icon"
+                        Color="@Color"
+                        Variant="@Variant"
+                        Size="Size.Medium"
+                        Disabled="@Disabled"
+                        Class="ma-2 pl-2 pr-2"
+                        OnClick="@OnClick">
+             @Caption
+         </MudIconButton>
+     </MudHidden>
+ </MudTooltip>
+ 

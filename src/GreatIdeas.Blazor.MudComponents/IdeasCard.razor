@@ -1,0 +1,63 @@
+﻿@inherits IdeasCardBase
+
+<MudItem xs="@xs" sm="@sm" md="@md" lg="@lg" Class="@Class">
+    <MudCard Elevation=2>
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudItem>
+                    <div class="d-flex align-center">
+                        @if (ShowIcon)
+                        {
+                            <MudIcon Icon=@Icon Color="@Color" Size="Size.Medium" Class="mr-2"/>
+                            <MudText Typo="Typo.h6" Color="@Color">@Title</MudText>
+                        }
+                        else
+                        {
+                            <MudText Typo="Typo.h6" Color="@Color">@Title</MudText>
+                        }
+                    </div>
+                </MudItem>
+                
+                <MudText Typo="Typo.body2">@SubTitle</MudText>
+                
+            </CardHeaderContent>
+            
+            <CardHeaderActions>
+                @HeaderActions
+            </CardHeaderActions>
+        </MudCardHeader>
+        <MudCardContent>
+            @Content
+        </MudCardContent>
+    </MudCard>
+</MudItem>
+
+
+@*
+<MudItem xs="@xs" sm="@sm" md="@md" lg="@lg">
+    <MudCard Elevation=2>
+        <MudCardHeader>
+            <CardHeaderAvatar>
+                @if (ShowAvator)
+                {
+                    // <MudAvatar Color="Color.Tertiary" Variant="Variant.Filled">@Initials()</MudAvatar>
+                    <MudIcon Icon=@Icon Size="Size.Medium" Class="mr-2"/>
+                }
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@Title</MudText>
+                <MudText Typo="Typo.body2">@SubTitle</MudText>
+            </CardHeaderContent>
+            <CardHeaderActions>
+                @HeaderActions
+            </CardHeaderActions>
+        </MudCardHeader>
+        <MudCardContent>
+            @Content
+        </MudCardContent>
+        <MudCardActions>
+            @Actions
+        </MudCardActions>
+    </MudCard>
+</MudItem>*@
+
