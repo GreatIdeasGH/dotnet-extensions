@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreatIdeas.Extensions", "src\GreatIdeas.Extensions\GreatIdeas.Extensions.csproj", "{BA9F3DB0-6E91-4C50-A8EB-0BC1C73F8705}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1D64E20D-4F33-461A-B94A-7E0D979F21B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B00491C2-77BF-407C-9216-4176AD8F4021}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreatIdeas.Extensions.Tests", "tests\GreatIdeas.Extensions.Tests\GreatIdeas.Extensions.Tests.csproj", "{BC7816FD-1C1D-4F15-AAE8-DE47391848D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA9F3DB0-6E91-4C50-A8EB-0BC1C73F8705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9F3DB0-6E91-4C50-A8EB-0BC1C73F8705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9F3DB0-6E91-4C50-A8EB-0BC1C73F8705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9F3DB0-6E91-4C50-A8EB-0BC1C73F8705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC7816FD-1C1D-4F15-AAE8-DE47391848D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC7816FD-1C1D-4F15-AAE8-DE47391848D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC7816FD-1C1D-4F15-AAE8-DE47391848D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC7816FD-1C1D-4F15-AAE8-DE47391848D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BA9F3DB0-6E91-4C50-A8EB-0BC1C73F8705} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
+		{BC7816FD-1C1D-4F15-AAE8-DE47391848D9} = {B00491C2-77BF-407C-9216-4176AD8F4021}
+	EndGlobalSection
+EndGlobal
