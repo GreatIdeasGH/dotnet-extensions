@@ -19,4 +19,9 @@ public static class JsRuntimeExtensions
     {
         return jsRuntime.InvokeVoidAsync("saveAsFile", fileName, Convert.ToBase64String(content));
     }
+
+    public static async ValueTask BrowserOnlineHandler<T>(this IJSRuntime jsRuntime, DotNetObjectReference<T> dotNetObjectReference) where T : class
+    {
+        await jsRuntime.InvokeVoidAsync("blazorInterop.registerOnlineHandler", dotNetObjectReference);
+    }
 }

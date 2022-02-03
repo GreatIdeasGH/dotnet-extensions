@@ -5,18 +5,15 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.0.1</Version>
+        <Version>1.0.3</Version>
         <Description>Blazor components</Description>
         <Authors>Gerald Maale</Authors>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <AssemblyVersion>1.0.1</AssemblyVersion>
-        <FileVersion>1.0.1</FileVersion>
         <PackageTags>Blazor, Session Storage, Local Storage, JsRuntime, Page Info</PackageTags>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</RepositoryUrl>
     </PropertyGroup>
-
 
     <ItemGroup>
         <SupportedPlatform Include="browser" />
@@ -29,15 +26,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\GreatIdeas.Extensions\GreatIdeas.Extensions.csproj" />
     </ItemGroup>
 
 	<ItemGroup>
 		<None Include="..\..\LICENSE" Pack="true" Visible="false" PackagePath="" />
+		<None Include="bundleconfig.json" />
 	</ItemGroup>
 
 </Project>

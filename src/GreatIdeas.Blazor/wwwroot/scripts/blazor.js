@@ -54,3 +54,46 @@ function download(uri, name)
     link.remove();
 }
 
+var blazorInterop = blazorInterop || {};
+
+blazorInterop.showAlert = function (message) {
+    alert(message);
+}
+
+blazorInterop.logToConsoleTable = function (obj) {
+    console.table(obj);
+}
+
+blazorInterop.focusElement = function (element) {
+    element.focus();
+}
+
+blazorInterop.registerResizeHandler = function (dotNetObjectRef) {
+    function resizeHandler() {
+        dotNetObjectRef.invokeMethodAsync("SetWindowSize",
+            {
+                width: window.innerWidth,
+                height: window.innerHeight
+            });
+    }
+
+    // Set up initial value
+    resizeHandler();
+
+    // Register event handler
+    window.addEventListener("resize", resizeHandler)
+}
+
+blazorInterop.registerOnlineHandler = function (dotNetObjectRef) {
+    function onlineHandler() {
+        dotNetObjectRef.invokeMethodAsync("SetOnlineStatus", navigator.onLine);
+    };
+
+    // Set up initial value
+    onlineHandler();
+
+    // Register event handler
+    window.addEventListener("online", onlineHandler)
+    window.addEventListener("offline", onlineHandler)
+}
+
