@@ -4,11 +4,11 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>        
-        <Version>1.2.0</Version>
+        <Version>1.2.1</Version>
         <Description>Generic Extensions for data types</Description>
         <Authors>Gerald Maale</Authors>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <PackageTags>DateTime, string, Enum, File Paths, Paging metadata</PackageTags>
+        <PackageTags>DateTime, string, Enum, File Paths, Paging Metadata, Caching</PackageTags>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</RepositoryUrl>
@@ -17,6 +17,10 @@
 
 	<ItemGroup>
 		<None Include="..\..\LICENSE" Pack="true" Visible="false" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="6.0.0" />
 	</ItemGroup>
 
 </Project>

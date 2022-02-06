@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using GreatIdeas.Extensions;
 
 namespace GreatIdeas.Blazor.MudComponents
 {

@@ -142,4 +142,63 @@ public static class DateTimeExtensions
 
         return finalDate;
     }
+
+    public static int GetCurrentAge(this DateTime dateTime)
+        {
+            var currentDate = DateTime.UtcNow;
+            int age = currentDate.Year - dateTime.Year;
+
+            if (currentDate < dateTime.AddYears(age))
+            {
+                age--;
+            }
+
+            return age;
+        }
+
+        public static int DatePeriod(this DateTime date)
+        {
+            DateTimeOffset now = DateTimeOffset.UtcNow;
+            ;
+            int years = new DateTime(DateTimeOffset.Now.Subtract(date).Ticks).Year - 1;
+            DateTimeOffset pastYearDate = date.AddYears(years);
+            int months = 0;
+            for (int i = 1; i <= 12; i++)
+            {
+                if (pastYearDate.AddMonths(i) == now)
+                {
+                    months = i;
+                    break;
+                }
+                else if (pastYearDate.AddMonths(i) >= now)
+                {
+                    months = i - 1;
+                    break;
+                }
+            }
+
+            int Days = now.Subtract(pastYearDate.AddMonths(months)).Days;
+            int Hours = now.Subtract(pastYearDate).Hours;
+            int Minutes = now.Subtract(pastYearDate).Minutes;
+            int Seconds = now.Subtract(pastYearDate).Seconds;
+            // return String.Format("Age: {0} Year(s) {1} Month(s) {2} Day(s) {3} Hour(s) {4} Second(s)",
+            //     Years, Months, Days, Hours, Seconds);
+            return years;
+        }
+
+        public static bool ValidateAge(DateTime entryDate, int ageLimit)
+        {
+            DateTime now = DateTime.Today;
+
+            int age = now.Year - Convert.ToDateTime(entryDate).Year;
+
+            if (age < ageLimit)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 }
