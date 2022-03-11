@@ -17,9 +17,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Mapster" Version="7.2.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
-      <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.15" />
+      <PackageReference Include="Mapster" Version="7.3.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
+      <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.18" />
     </ItemGroup>
 
 	<ItemGroup>

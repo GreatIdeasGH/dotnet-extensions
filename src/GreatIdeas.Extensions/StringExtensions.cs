@@ -4,6 +4,39 @@ namespace GreatIdeas.Extensions;
 
 public static class StringExtensions
 {
+    /// <summary>
+    /// Generate AlphaNumeric characters with a speicified number of characters
+    /// </summary>
+    /// <param name="number">Number of characters</param>
+    /// <returns>String</returns>
+    public static string GenerateCode(int number = 6)
+    {
+        // Generate 8 character alphanumeric code
+        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        var random = new Random();
+        var result = new string(
+            Enumerable.Repeat(chars, number)
+                .Select(s => s[random.Next(s.Length)])
+                .ToArray());
+
+        return result;
+    }
+
+    public static string GetInitials(this string text, string separator)
+    {
+        string[] output = text.Split(' ');
+        string initials = string.Empty;
+
+        var firstChar = text.Split(' ').Select(s => s[0]);
+
+        foreach (var c in firstChar)
+        {
+            initials += c + separator;
+        }
+
+        return initials.Trim();
+    }
+
     public static string InsertSpaceBeforeUpperCase(this string inputString)
     {
         StringBuilder stringBuilder = new StringBuilder();
@@ -24,12 +57,12 @@ public static class StringExtensions
     public static string PositionSuffix(this int value)
     {
         var converter = value.ToString();
-            
+
         if (value == 11 || value == 12 || value == 13)
         {
             return "th";
         }
-            
+
         if (converter.EndsWith('1'))
         {
             return "st";
@@ -46,16 +79,16 @@ public static class StringExtensions
         }
         return "th";
     }
-        
+
     public static string PositionSuffix(this int? value)
     {
         var converter = value!.ToString();
-            
+
         if (value == 11 || value == 12 || value == 13)
         {
             return "th";
         }
-            
+
         if (converter.EndsWith('1'))
         {
             return "st";
@@ -72,17 +105,17 @@ public static class StringExtensions
         }
         return "th";
     }
-        
+
     public static string PositionSuffix(this string value)
     {
         var parsedInt = int.Parse(value);
         var converter = int.Parse(value).ToString();
-            
+
         if (parsedInt == 11 || parsedInt == 12 || parsedInt == 13)
         {
             return "th";
         }
-            
+
         if (converter.EndsWith('1'))
         {
             return "st";

@@ -3,7 +3,7 @@ using MudBlazor;
 
 namespace GreatIdeas.Blazor.MudComponents
 {
-    public partial class IdeasInfoBar
+    public partial class IdeasAlertBar
     {
         [Parameter]
         public string Content { get; set; }
