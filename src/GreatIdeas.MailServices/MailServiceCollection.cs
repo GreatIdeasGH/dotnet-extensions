@@ -1,12 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using static GreatIdeas.MailServices.MsGraphService;
 
 namespace GreatIdeas.MailServices
 {
     public static class MailServiceCollection
     {
         /// <summary>
-        /// Add DI for <see cref="MsGraphMailService"/> with configuration
+        /// Add DI for <see cref="MsGraphService"/> with configuration
         /// </summary>
         /// <param name="services"></param>
         /// <param name="configuration"></param>
@@ -14,10 +15,10 @@ namespace GreatIdeas.MailServices
         public static IServiceCollection AddMsGraphMailService(this IServiceCollection services, IConfiguration configuration)
         {
             // Azure Storage Settings
-            services.Configure<MsGraphMailService.AzureAdOptions>(configuration.GetSection("AzureAd"));
+            services.Configure<AzureAdOptions>(configuration.GetSection("AzureAd"));
 
             // Register MsGraphMailService
-            services.AddTransient<IMsGraphMailService, MsGraphMailService>();
+            services.AddTransient<IMsGraphService, MsGraphService>();
 
             return services;
         }
@@ -30,11 +31,11 @@ namespace GreatIdeas.MailServices
         /// <returns></returns>
         public static IServiceCollection AddSendGridMailService(this IServiceCollection services, IConfiguration configuration)
         {
-            // Register SendGridService
-            services.AddTransient<ISendGridService, SendGridService>();
-
             // Azure Storage Settings
             services.Configure<SendGridService.SendGridOptions>(configuration.GetSection("SendGrid"));
+
+            // Register SendGridService
+            services.AddTransient<ISendGridService, SendGridService>();
 
             return services;
         }

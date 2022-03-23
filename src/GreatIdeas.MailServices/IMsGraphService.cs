@@ -1,6 +1,6 @@
 ﻿namespace GreatIdeas.MailServices;
 
-public interface IMsGraphMailService
+public interface IMsGraphService
 {
     /// <summary>
     /// Send emailModel using Microsoft Graph API
@@ -8,4 +8,5 @@ public interface IMsGraphMailService
     /// <param name="emailModel"><see cref="EmailModel"/></param>
     /// <returns><see cref="string"/> for success or failure</returns>
     Task<bool> SendEmailAsync(EmailModel emailModel);
+    Task<bool> SendEmailWithAttachmentAsync(EmailModel emailModel, FileToAttach fileToAttach);
 }
