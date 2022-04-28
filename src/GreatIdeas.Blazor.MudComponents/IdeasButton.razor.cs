@@ -25,5 +25,7 @@ namespace GreatIdeas.Blazor.MudComponents
 
         [Parameter]
         public bool Disabled { get; set; }
+
+        [Parameter] public string Class { get; set; }
     }
 }

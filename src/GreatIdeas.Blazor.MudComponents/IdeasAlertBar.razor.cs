@@ -17,5 +17,7 @@ namespace GreatIdeas.Blazor.MudComponents
 
         [Parameter]
         public bool Enable { get; set; }
+
+        [Parameter] public string Class { get; set; } = "mb-2 mt-2";
     }
 }

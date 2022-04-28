@@ -2,12 +2,12 @@ using Microsoft.AspNetCore.Components;
 
 namespace GreatIdeas.Blazor.MudComponents
 {
-    public class IdeasComponentBase: ComponentBase
+    public class IdeasComponentBase : ComponentBase
     {
         ///<summary>Class to apply css</summary>
         [Parameter]
         public string Class { get; set; } = "mt-2";
-        
+
         ///<summary>Title of card</summary> 
         [Parameter]
         public string Title { get; set; }
