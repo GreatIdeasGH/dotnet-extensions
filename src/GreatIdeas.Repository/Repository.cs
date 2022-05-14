@@ -1,27 +1,24 @@
-﻿using System.Linq.Expressions;
-using GreatIdeas.Extensions.Paging;
+﻿using GreatIdeas.Extensions.Paging;
 using GreatIdeas.Repository.Paging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Expressions;
 
 namespace GreatIdeas.Repository;
 
 public abstract class RepositoryFactory<TContext, TEntity> :
-    IDisposable, IRepositoryFactory<TContext, TEntity> 
+    IDisposable, IRepositoryFactory<TContext, TEntity>
     where TContext : DbContext where TEntity : class
 {
-    private readonly IDbContextFactory<TContext> _dbContextFactory;
-
-    protected DbSet<TEntity> DbSet { get; set; }
+    protected readonly IDbContextFactory<TContext> DbContextFactory;
 
     protected TContext DbContext { get; set; }
 
+
     public RepositoryFactory(IDbContextFactory<TContext> dbContextFactory)
     {
-        _dbContextFactory = dbContextFactory ?? throw new ArgumentNullException(nameof(dbContextFactory));
-        DbContext = _dbContextFactory.CreateDbContext();
-        DbSet = DbContext.Set<TEntity>();
+        DbContextFactory = dbContextFactory ?? throw new ArgumentNullException(nameof(dbContextFactory));
     }
 
     public virtual async Task<PagedList<TEntity>> GetPagedListAsync(
@@ -33,7 +30,10 @@ public abstract class RepositoryFactory<TContext, TEntity> :
       CancellationToken cancellationToken = default(CancellationToken),
       bool ignoreQueryFilters = false)
     {
-        IQueryable<TEntity> source = DbSet;
+        DbContext = await DbContextFactory.CreateDbContextAsync(cancellationToken);
+        var _dbset = DbContext.Set<TEntity>();
+
+        IQueryable<TEntity> source = _dbset;
         if (disableTracking)
             source = source.AsNoTracking();
 
@@ -54,7 +54,9 @@ public abstract class RepositoryFactory<TContext, TEntity> :
     public virtual async Task<IEnumerable<TEntity>> GetAllAsync(
       CancellationToken cancellationToken = default(CancellationToken))
     {
-        return await DbSet.AsNoTracking().ToListAsync(cancellationToken);
+        DbContext = await DbContextFactory.CreateDbContextAsync(cancellationToken);
+        var _dbset = DbContext.Set<TEntity>();
+        return await _dbset.AsNoTracking().ToListAsync(cancellationToken);
     }
 
     public IQueryable<TEntity> GetAll(
@@ -64,7 +66,10 @@ public abstract class RepositoryFactory<TContext, TEntity> :
       bool disableTracking = true,
       bool ignoreQueryFilters = false)
     {
-        IQueryable<TEntity> source = DbSet;
+        DbContext = DbContextFactory.CreateDbContext();
+        var _dbset = DbContext.Set<TEntity>();
+
+        IQueryable<TEntity> source = _dbset;
         if (disableTracking)
             source = source.AsNoTracking();
         if (include != null)
@@ -76,13 +81,20 @@ public abstract class RepositoryFactory<TContext, TEntity> :
         return orderBy != null ? orderBy(source) : source;
     }
 
-    public virtual ValueTask<TEntity> FindAsync(params object[] keyValues) => DbSet.FindAsync(keyValues);
+    public virtual ValueTask<TEntity> FindAsync(params object[] keyValues)
+    {
+        DbContext = DbContextFactory.CreateDbContext();
+        var _dbset = DbContext.Set<TEntity>();
+        return _dbset.FindAsync(keyValues);
+    }
 
-    public virtual ValueTask<TEntity> FindAsync(
+    public virtual async ValueTask<TEntity> FindAsync(
       object[] keyValues,
       CancellationToken cancellationToken)
     {
-        return DbSet.FindAsync(keyValues, cancellationToken);
+        DbContext = await DbContextFactory.CreateDbContextAsync(cancellationToken);
+        var _dbset = DbContext.Set<TEntity>();
+        return await _dbset.FindAsync(keyValues, cancellationToken);
     }
 
     public virtual async Task<TEntity> GetFirstOrDefaultAsync(
@@ -93,7 +105,10 @@ public abstract class RepositoryFactory<TContext, TEntity> :
       bool ignoreQueryFilters = false,
       CancellationToken cancellationToken = default(CancellationToken))
     {
-        IQueryable<TEntity> source = DbSet;
+        DbContext = await DbContextFactory.CreateDbContextAsync(cancellationToken);
+        var _dbset = DbContext.Set<TEntity>();
+
+        IQueryable<TEntity> source = _dbset;
         if (disableTracking)
             source = source.AsNoTracking();
 
@@ -107,23 +122,33 @@ public abstract class RepositoryFactory<TContext, TEntity> :
           await source.FirstOrDefaultAsync(predicate, cancellationToken);
     }
 
-    public virtual TEntity Insert(TEntity entity) => DbSet.Add(entity).Entity;
+    public virtual TEntity Insert(TEntity entity)
+    {
+        DbContext = DbContextFactory.CreateDbContext();
+        var _dbset = DbContext.Set<TEntity>();
+        return _dbset.Add(entity).Entity;
+    }
 
-    public virtual ValueTask<EntityEntry<TEntity>> InsertAsync(
+    public virtual async ValueTask<EntityEntry<TEntity>> InsertAsync(
       TEntity entity,
       CancellationToken cancellationToken = default(CancellationToken))
     {
-        return DbSet.AddAsync(entity, cancellationToken);
+        DbContext = await DbContextFactory.CreateDbContextAsync(cancellationToken);
+        var _dbset = DbContext.Set<TEntity>();
+        return await _dbset.AddAsync(entity, cancellationToken);
     }
 
     public virtual void InsertRange(List<TEntity> entities)
     {
+        DbContext = DbContextFactory.CreateDbContext();
+        var _dbset = DbContext.Set<TEntity>();
+
         try
         {
             if (entities == null)
                 throw new ArgumentNullException(nameof(entities), "Items to insert must not be null");
 
-            DbSet.AddRange(entities);
+            _dbset.AddRange(entities);
         }
         catch (Exception ex)
         {
@@ -135,11 +160,14 @@ public abstract class RepositoryFactory<TContext, TEntity> :
       List<TEntity> entities,
       CancellationToken cancellationToken = default(CancellationToken))
     {
+        DbContext = await DbContextFactory.CreateDbContextAsync(cancellationToken);
+        var _dbset = DbContext.Set<TEntity>();
+
         if (entities == null)
             throw new ArgumentNullException(nameof(entities), "Items to insert must not be null");
         try
         {
-            await DbSet.AddRangeAsync(entities, cancellationToken);
+            await _dbset.AddRangeAsync(entities, cancellationToken);
         }
         catch (Exception ex)
         {
@@ -149,11 +177,14 @@ public abstract class RepositoryFactory<TContext, TEntity> :
 
     public virtual void Update(TEntity entity)
     {
+        DbContext = DbContextFactory.CreateDbContext();
+        var _dbset = DbContext.Set<TEntity>();
+
         if (entity == null)
             throw new ArgumentNullException(nameof(entity), "Item to update must not be null");
         try
         {
-            DbSet.Update(entity);
+            _dbset.Update(entity);
         }
         catch (Exception ex)
         {
@@ -167,11 +198,14 @@ public abstract class RepositoryFactory<TContext, TEntity> :
 
     public virtual void UpdateRange(List<TEntity> entities)
     {
+        DbContext = DbContextFactory.CreateDbContext();
+        var _dbset = DbContext.Set<TEntity>();
+
         if (entities.Count <= 0)
             throw new ArgumentNullException(nameof(entities), "Items to update must not be null");
         try
         {
-            DbSet.UpdateRange(entities);
+            _dbset.UpdateRange(entities);
         }
         catch (Exception ex)
         {
@@ -183,7 +217,10 @@ public abstract class RepositoryFactory<TContext, TEntity> :
     {
         if (entity == null)
             return;
-        DbSet.Remove(entity);
+
+        DbContext = DbContextFactory.CreateDbContext();
+        var _dbset = DbContext.Set<TEntity>();
+        _dbset.Remove(entity);
     }
 
     public virtual void DeleteRange(List<TEntity> entities)
@@ -192,7 +229,9 @@ public abstract class RepositoryFactory<TContext, TEntity> :
             throw new ArgumentNullException(nameof(entities), "Items to delete must not be null");
         try
         {
-            DbSet.RemoveRange(entities);
+            DbContext = DbContextFactory.CreateDbContext();
+            var _dbset = DbContext.Set<TEntity>();
+            _dbset.RemoveRange(entities);
         }
         catch (Exception ex)
         {
@@ -204,10 +243,16 @@ public abstract class RepositoryFactory<TContext, TEntity> :
       Expression<Func<TEntity, bool>> selector = null,
       CancellationToken cancellationToken = default(CancellationToken))
     {
-        return selector == null ? await DbSet.AnyAsync(cancellationToken) : await DbSet.AnyAsync(selector, cancellationToken);
+        DbContext = await DbContextFactory.CreateDbContextAsync(cancellationToken);
+        var _dbset = DbContext.Set<TEntity>();
+        return selector == null ? await _dbset.AnyAsync(cancellationToken) : await _dbset.AnyAsync(selector, cancellationToken);
     }
 
-    public virtual async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken)) => await DbContext.SaveChangesAsync(cancellationToken);
+    public virtual async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+    {
+        //DbContext = await DbContextFactory.CreateDbContextAsync(cancellationToken);
+        return await DbContext.SaveChangesAsync(cancellationToken);
+    }
 
     public void Dispose()
     {

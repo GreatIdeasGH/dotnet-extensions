@@ -1,0 +1,3 @@
+﻿# GreatIdeas.Repository
+
+## Getting Started

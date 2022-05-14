@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.Blazor.MudCompon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.MailServices", "src\GreatIdeas.MailServices\GreatIdeas.MailServices.csproj", "{44321684-ABD3-4BB4-8CF8-C3C62B73957B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreatIdeas.Logging", "src\GreatIdeas.Logging\GreatIdeas.Logging.csproj", "{1014F5F3-2E12-4124-9225-914A474DDDEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.Logging", "src\GreatIdeas.Logging\GreatIdeas.Logging.csproj", "{1014F5F3-2E12-4124-9225-914A474DDDEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

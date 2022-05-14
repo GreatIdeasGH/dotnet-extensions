@@ -4,21 +4,21 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
-        <Version>2.2.0</Version>
+        <Version>2.2.1</Version>
         <Description>Repository pattern for various actions including paginations with EntityframeworkCore</Description>
         <Authors>Gerald Maale</Authors>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageTags>AspNetCore, Mapster, EntityframeworkCore, Pagination</PackageTags>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions/tree/master/src/GreatIdeas.Repository</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions/tree/master/src/GreatIdeas.Repository</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Mapster" Version="7.3.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
       <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.18" />
     </ItemGroup>
 
