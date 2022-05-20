@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	  <Version>1.0.0</Version>
+	  <Version>1.0.1</Version>
 	  <Description>This package simplifies the integration of Serilog with persistance stores such as Seq, Elastic Search and Kibana, and Application Insights.</Description>
 	  <Authors>Gerald Maale</Authors>
 	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
