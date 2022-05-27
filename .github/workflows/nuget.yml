@@ -3,6 +3,8 @@
 on:
   push:
     branches: [ master ]
+    tags:
+    - 'v*'
 
 env:
   PROJECT_PATH: src/GreatIdeas.Logging/GreatIdeas.Logging.csproj
@@ -28,9 +30,13 @@ jobs:
       
     - name: Build Project
       run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+
+    - name: Get Version
+      id: version
+      uses: battila7/get-version-action@v2
       
-    - name: Publish to Nuget
-      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --configuration Release --include-symbols --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+    - name: Pack Project
+      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
 
     - name: Push to Nuget
       run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
