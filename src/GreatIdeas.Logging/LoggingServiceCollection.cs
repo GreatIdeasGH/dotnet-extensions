@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.Elasticsearch;
@@ -14,13 +15,9 @@ public static class LoggingServiceCollection
     /// <summary>
     /// Adds the logging services using Serilog and persisting to Seq, Elasticsearch and Application Insights. By default logging services are not enabled.
     /// </summary>
-    /// <param name="useSeq">Enable Seq</param>
-    /// <param name="useElasticSearch">Enable Elastic Search</param>
-    /// <param name="useApplicationInsights">Enable Application Insights</param>
-    public static void AddLoggingServices(this WebApplicationBuilder builder, bool? useSeq = null, bool? useElasticSearch = null, bool? useApplicationInsights = null)
+    /// <param name="loggingOptions"><see cref="LoggingOptions"/> for Seq, Elastic Search and Application Insights</param>
+    private static void AddLoggingServices(WebApplicationBuilder builder, LoggingOptions loggingOptions)
     {
-        Log.Information("Starting web host ...");
-
         // Get assembly information
         var currentAssembly = Assembly.GetEntryAssembly();
         var assemblyName = currentAssembly!.GetName().Name?.ToLower().Replace(".", "-");
@@ -41,12 +38,13 @@ public static class LoggingServiceCollection
 
             configuration.WriteTo.File($"logs/{loggingName}.log", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: null);
 
-            if (useSeq.HasValue && useSeq.Value)
+
+            if (loggingOptions.UseSeq)
             {
                 configuration.WriteTo.Seq(builder.Configuration["SeqConfiguration:Uri"]);
             }
 
-            if (useElasticSearch.HasValue && useElasticSearch!.Value)
+            if (loggingOptions.UseElasticSearch)
             {
                 configuration.WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(builder.Configuration["ElasticConfiguration:Uri"]))
                 {
@@ -57,7 +55,7 @@ public static class LoggingServiceCollection
                 });
             }
 
-            if (useApplicationInsights.HasValue && useApplicationInsights!.Value)
+            if (loggingOptions.UseApplicationInsights)
             {
                 configuration.WriteTo.ApplicationInsights(builder.Services.BuildServiceProvider().GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces, LogEventLevel.Information);
                 configuration.WriteTo.ApplicationInsights(builder.Services.BuildServiceProvider().GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Events, LogEventLevel.Information);
@@ -65,14 +63,32 @@ public static class LoggingServiceCollection
 
         });
 
-
-        if (useApplicationInsights!.Value)
+        // Use Application Insights from setupAction
+        if (loggingOptions!.UseApplicationInsights)
         {
             // Application Insights
             builder.Services.AddApplicationInsightsTelemetry(builder.Configuration);
         }
     }
 
+
+    /// <summary>
+    /// Register the logging services with optional logging option for DI.
+    /// </summary>
+    /// <param name="setupAction">setup action to configure for Seq, Elastic Search and Application Insights</param>
+    public static void AddLoggingServices(this WebApplicationBuilder builder, Action<LoggingOptions>? setupAction = null)
+    {
+        Log.Information("Starting web host ...");
+
+        LoggingOptions loggingOptions = new();
+        if (setupAction != null)
+        {
+            loggingOptions = builder.Services.BuildServiceProvider().GetRequiredService<IOptionsSnapshot<LoggingOptions>>().Value;
+            setupAction?.Invoke(loggingOptions);
+        }
+
+        AddLoggingServices(builder, loggingOptions);
+    }
 
     /// <summary>
     /// Add Serilog boostrap to the beginning of Program.cs to call this method before the application runs.
