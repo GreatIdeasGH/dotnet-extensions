@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		nuget.yml = nuget.yml
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.Blazored.FluentValidation", "src\GreatIdeas.Blazored.FluentValidation\GreatIdeas.Blazored.FluentValidation.csproj", "{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{1014F5F3-2E12-4124-9225-914A474DDDEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1014F5F3-2E12-4124-9225-914A474DDDEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1014F5F3-2E12-4124-9225-914A474DDDEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{50C1B23B-4AF9-43F5-BD1D-B6FC2DA01776} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 		{44321684-ABD3-4BB4-8CF8-C3C62B73957B} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 		{1014F5F3-2E12-4124-9225-914A474DDDEF} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
+		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37D7DD49-F093-4911-B811-951F57DA59FE}
