@@ -28,6 +28,8 @@ namespace GreatIdeas.Blazor.MudComponents
         ///<summary>Breakpoint for Desktop</summary>
         [Parameter]
         public int lg { get; set; }
+        ///<summary>Breakpoint for Large desktop</summary>
+        public int xl { get; set; }
 
         ///<summary>Add Components to body of paper</summary>
         [Parameter]

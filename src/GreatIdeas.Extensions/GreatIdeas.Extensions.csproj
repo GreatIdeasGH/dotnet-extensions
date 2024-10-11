@@ -1,26 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>disable</Nullable>        
-        <Version>1.2.3</Version>
-        <Description>Generic Extensions for data types</Description>
-        <Authors>Gerald Maale</Authors>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <PackageTags>DateTime, string, Enum, File Paths, Paging Metadata, Caching</PackageTags>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</RepositoryUrl>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    </PropertyGroup>
-
-	<ItemGroup>
-		<None Include="..\..\LICENSE" Pack="true" Visible="false" PackagePath="" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="6.0.0" />
-	</ItemGroup>
-
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>1.3.1</Version>
+    <Description>Generic Extensions for data types</Description>
+    <Authors>Gerald Maale</Authors>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageTags>DateTime, string, Enum, File Paths, Paging Metadata, Caching</PackageTags>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" />
+  </ItemGroup>
 </Project>

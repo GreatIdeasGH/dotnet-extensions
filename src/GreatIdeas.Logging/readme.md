@@ -40,7 +40,7 @@ Elastic search and Kibana are both required to effectively logging and UI capabi
 With Application Insights, you will need to possess the  Instrumentation key for the resource created in Azure. Also provide the following configuration in `appsettings.json`.
 ```json
 "ApplicationInsights": {
-   "InstrumentationKey": "<key>"
+  "ConnectionString": "<Copy connection string from Application Insights Resource Overview>"
 }
 ```
 
@@ -63,7 +63,12 @@ try
 	var builder = WebApplication.CreateBuilder(args);  
 
 	// Add logging
-	builder.AddLoggingServices();
+	builder.AddLoggingServices(options => 
+	{
+		 options.UseApplicationInsights = true;
+		 options.UseSeq = false;
+		 options.UseElasticSearch = false;
+	});
 	
 	// Other code removed for brevity
 

@@ -1,44 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
-
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<Nullable>enable</Nullable>
-		<ImplicitUsings>enable</ImplicitUsings>
-
-		<Authors>Chris Sainty; Gerald Maale</Authors>
-		<Company></Company>
-		<Copyright>Copyright 2020 (c) Chris Sainty. All rights reserved.</Copyright>
-
-		<Description>A library for using FluentValidation with Blazor</Description>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-
-		<!-- NuGet settings -->
-		<PackageId>GreatIdeas.Blazored.FluentValidation</PackageId>
-		<PackageTags>Blazor;FluentValidation;Fluent Validation;Blazored;Components;ASP.NET Core;CSharp;Web;GreatIdeas</PackageTags>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/Blazored/FluentValidation</PackageProjectUrl>
-		<PackageIcon>icon.png</PackageIcon>
-		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/Blazored/FluentValidation</RepositoryUrl>
-
-		<!-- SourceLink settings -->
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-	</PropertyGroup>
-
-
-	<ItemGroup>
-		<SupportedPlatform Include="browser" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="FluentValidation" Version="11.2.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.8" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="icon.png" Pack="true" PackagePath="\" />
-	</ItemGroup>
-
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Authors>Chris Sainty; Gerald Maale</Authors>
+    <Company>
+    </Company>
+    <Copyright>Copyright 2020 (c) Chris Sainty. All rights reserved.</Copyright>
+    <Description>A library for using FluentValidation with Blazor</Description>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <!-- NuGet settings -->
+    <PackageId>GreatIdeas.Blazored.FluentValidation</PackageId>
+    <PackageTags>Blazor;FluentValidation;Fluent Validation;Blazored;Components;ASP.NET Core;CSharp;Web;GreatIdeas</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Blazored/FluentValidation</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Blazored/FluentValidation</RepositoryUrl>
+    <!-- SourceLink settings -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+	
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
 </Project>

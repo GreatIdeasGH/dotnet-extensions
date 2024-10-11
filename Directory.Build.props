@@ -1,0 +1,33 @@
+<Project>
+	<PropertyGroup>
+		<RepoRootPath>$(MSBuildThisFileDirectory)</RepoRootPath>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Software Team</Authors>
+		<Company>GreatIdeas Business Solutions</Company>
+		<TargetFramework>net8.0</TargetFramework>
+		<Copyright>Copyright © GreatIdeas Business Solutions</Copyright>
+		<!-- <MinVerTagPrefix>v</MinVerTagPrefix>       -->
+		<!-- <MinVerMinimumMajorMinor>0</MinVerMinimumMajorMinor>   -->
+		<Features>strict</Features>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<!-- <PackageReference
+      Include="SonarAnalyzer.CSharp"
+      PrivateAssets="all"
+      IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"
+      Condition="$(MSBuildProjectExtension) == '.csproj'">
+    </PackageReference> -->
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<PropertyGroup Label="Package Versions">
+		<DotNet6Version>8.0.0</DotNet6Version>
+		<DotNet7Version>9.0.0</DotNet7Version>
+	</PropertyGroup>
+
+</Project>

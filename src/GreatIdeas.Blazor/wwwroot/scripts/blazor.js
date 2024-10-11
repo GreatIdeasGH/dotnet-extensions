@@ -97,3 +97,14 @@ blazorInterop.registerOnlineHandler = function (dotNetObjectRef) {
     window.addEventListener("offline", onlineHandler)
 }
 
+// Anchor Navigation for blazor
+function BlazorScrollToId(id) {
+    const element = document.getElementById(id);
+    if (element instanceof HTMLElement) {
+        element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest"
+        });
+    }
+}

@@ -1,4 +1,11 @@
-<PageTitle>@Title | @ApplicationName</PageTitle>
+@if (!string.IsNullOrWhiteSpace(ApplicationName))
+{
+    <PageTitle>@Title | @ApplicationName</PageTitle>
+}
+else
+{
+    <PageTitle>@Title</PageTitle>
+}
 
 <HeadContent>
     <meta name="description" content="@Description" />
@@ -6,7 +13,7 @@
 
 @code {
     
-    [Parameter] public string? Title { get; set; }
+    [Parameter] public required string Title { get; set; }
 
     [Parameter]
     public string? Description { get; set; }

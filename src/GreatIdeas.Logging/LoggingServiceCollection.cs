@@ -33,17 +33,18 @@ public static class LoggingServiceCollection
             .ReadFrom.Services(services)
             .Enrich.FromLogContext()
             .Enrich.WithMachineName()
-            .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
+            .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName!)
             .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}");
 
             configuration.WriteTo.File($"logs/{loggingName}.log", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: null);
 
-
+            // Use Seq
             if (loggingOptions.UseSeq)
             {
                 configuration.WriteTo.Seq(builder.Configuration["SeqConfiguration:Uri"]);
             }
 
+            // Use Elastic Search            
             if (loggingOptions.UseElasticSearch)
             {
                 configuration.WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(builder.Configuration["ElasticConfiguration:Uri"]))
@@ -55,6 +56,7 @@ public static class LoggingServiceCollection
                 });
             }
 
+            // Use Application Insights
             if (loggingOptions.UseApplicationInsights)
             {
                 configuration.WriteTo.ApplicationInsights(builder.Services.BuildServiceProvider().GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces, LogEventLevel.Information);
@@ -67,7 +69,7 @@ public static class LoggingServiceCollection
         if (loggingOptions!.UseApplicationInsights)
         {
             // Application Insights
-            builder.Services.AddApplicationInsightsTelemetry(builder.Configuration);
+            builder.Services.AddApplicationInsightsTelemetry();
         }
     }
 

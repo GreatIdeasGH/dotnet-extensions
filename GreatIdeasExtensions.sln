@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.Extensions.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.Repository", "src\GreatIdeas.Repository\GreatIdeas.Repository.csproj", "{A381B153-01B2-49AC-AB37-82B263589897}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.Extensions.AspNetCore", "src\GreatIdeas.Extensions.AspNetCore\GreatIdeas.Extensions.AspNetCore.csproj", "{2F673331-A332-4CCE-9D4B-C4D2A6A01D4C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.Blazor", "src\GreatIdeas.Blazor\GreatIdeas.Blazor.csproj", "{C8BC1418-52A9-4494-95B9-2FB6741566F2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.Blazor.MudComponents", "src\GreatIdeas.Blazor.MudComponents\GreatIdeas.Blazor.MudComponents.csproj", "{50C1B23B-4AF9-43F5-BD1D-B6FC2DA01776}"
@@ -25,10 +23,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.Logging", "src\G
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F9EB8F92-7BA3-432F-AFA2-9AB3FB0F4ACE}"
 	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
 		nuget.yml = nuget.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.Blazored.FluentValidation", "src\GreatIdeas.Blazored.FluentValidation\GreatIdeas.Blazored.FluentValidation.csproj", "{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreatIdeas.MailServices.MsGraph", "src\GreatIdeas.MailServices.MsGraph\GreatIdeas.MailServices.MsGraph.csproj", "{22B63AD1-FAF2-4CFD-8558-206CD7D0C75A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,10 +50,6 @@ Global
 		{A381B153-01B2-49AC-AB37-82B263589897}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A381B153-01B2-49AC-AB37-82B263589897}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A381B153-01B2-49AC-AB37-82B263589897}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F673331-A332-4CCE-9D4B-C4D2A6A01D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F673331-A332-4CCE-9D4B-C4D2A6A01D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F673331-A332-4CCE-9D4B-C4D2A6A01D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F673331-A332-4CCE-9D4B-C4D2A6A01D4C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8BC1418-52A9-4494-95B9-2FB6741566F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8BC1418-52A9-4494-95B9-2FB6741566F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8BC1418-52A9-4494-95B9-2FB6741566F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -72,6 +70,10 @@ Global
 		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22B63AD1-FAF2-4CFD-8558-206CD7D0C75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22B63AD1-FAF2-4CFD-8558-206CD7D0C75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22B63AD1-FAF2-4CFD-8558-206CD7D0C75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22B63AD1-FAF2-4CFD-8558-206CD7D0C75A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,12 +82,12 @@ Global
 		{BA9F3DB0-6E91-4C50-A8EB-0BC1C73F8705} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 		{BC7816FD-1C1D-4F15-AAE8-DE47391848D9} = {B00491C2-77BF-407C-9216-4176AD8F4021}
 		{A381B153-01B2-49AC-AB37-82B263589897} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
-		{2F673331-A332-4CCE-9D4B-C4D2A6A01D4C} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 		{C8BC1418-52A9-4494-95B9-2FB6741566F2} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 		{50C1B23B-4AF9-43F5-BD1D-B6FC2DA01776} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 		{44321684-ABD3-4BB4-8CF8-C3C62B73957B} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 		{1014F5F3-2E12-4124-9225-914A474DDDEF} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
+		{22B63AD1-FAF2-4CFD-8558-206CD7D0C75A} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37D7DD49-F093-4911-B811-951F57DA59FE}
