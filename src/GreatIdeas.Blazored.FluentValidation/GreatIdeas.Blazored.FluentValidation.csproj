@@ -17,7 +17,9 @@
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Blazored/FluentValidation</RepositoryUrl>
-    <!-- SourceLink settings -->
+	  <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+	  <!-- SourceLink settings -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>

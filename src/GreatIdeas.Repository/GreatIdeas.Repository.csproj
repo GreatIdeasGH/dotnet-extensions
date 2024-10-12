@@ -4,14 +4,13 @@
     <Nullable>enable</Nullable>
     <Version>2.3.0</Version>
     <Description>Repository pattern for various actions including paginations with EntityframeworkCore</Description>
-    <Authors>Gerald Maale</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>AspNetCore, Mapster, EntityframeworkCore, Pagination</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions/tree/master/src/GreatIdeas.Repository</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions/tree/master/src/GreatIdeas.Repository</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Mapster" />

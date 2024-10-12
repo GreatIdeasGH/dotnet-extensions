@@ -1,27 +1,21 @@
 <Project>
 	<PropertyGroup>
 		<RepoRootPath>$(MSBuildThisFileDirectory)</RepoRootPath>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<IncludeSymbols>true</IncludeSymbols>
-		<Authors>Software Team</Authors>
-		<Company>GreatIdeas Business Solutions</Company>
+		<Authors>Gerald Maale; GreatIdeas Software LLC</Authors>
 		<TargetFramework>net8.0</TargetFramework>
 		<Copyright>Copyright © GreatIdeas Business Solutions</Copyright>
 		<Features>strict</Features>
 		<OutputPath>$(RepoRootPath)packages/</OutputPath>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<IncludeSymbols>True</IncludeSymbols>
+		<Version>1.0.0-rc.1</Version>		
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<!-- <PackageReference
-      Include="SonarAnalyzer.CSharp"
-      PrivateAssets="all"
-      IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"
-      Condition="$(MSBuildProjectExtension) == '.csproj'">
-    </PackageReference> -->
 	</ItemGroup>
-	<ItemGroup>
+	<!--<ItemGroup>
 		<PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-	</ItemGroup>
+	</ItemGroup>-->
 </Project>

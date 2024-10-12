@@ -4,13 +4,12 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Version>1.0.4</Version>
 		<Description>MudBlazor components</Description>
-		<Authors>Gerald Maale</Authors>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageTags>Blazor, Components, MudBlazor</PackageTags>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</RepositoryUrl>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />

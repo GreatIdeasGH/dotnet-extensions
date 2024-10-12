@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32127.271
@@ -30,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatIdeas.Blazored.FluentValidation", "src\GreatIdeas.Blazored.FluentValidation\GreatIdeas.Blazored.FluentValidation.csproj", "{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionSamples", "samples\ExtensionSamples\ExtensionSamples.csproj", "{0B97A177-379A-42CC-B38B-5F014606AD3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionSamples", "samples\ExtensionSamples\ExtensionSamples.csproj", "{91BD802D-99C0-4414-B599-6BC6ED60ADCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,10 +69,10 @@ Global
 		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B97A177-379A-42CC-B38B-5F014606AD3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B97A177-379A-42CC-B38B-5F014606AD3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B97A177-379A-42CC-B38B-5F014606AD3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B97A177-379A-42CC-B38B-5F014606AD3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91BD802D-99C0-4414-B599-6BC6ED60ADCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91BD802D-99C0-4414-B599-6BC6ED60ADCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91BD802D-99C0-4414-B599-6BC6ED60ADCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91BD802D-99C0-4414-B599-6BC6ED60ADCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,7 +86,7 @@ Global
 		{44321684-ABD3-4BB4-8CF8-C3C62B73957B} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 		{1014F5F3-2E12-4124-9225-914A474DDDEF} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
 		{A0BEB5DF-A796-4B5A-8BB8-2C4D7220307C} = {1D64E20D-4F33-461A-B94A-7E0D979F21B3}
-		{0B97A177-379A-42CC-B38B-5F014606AD3A} = {B00491C2-77BF-407C-9216-4176AD8F4021}
+		{91BD802D-99C0-4414-B599-6BC6ED60ADCF} = {B00491C2-77BF-407C-9216-4176AD8F4021}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37D7DD49-F093-4911-B811-951F57DA59FE}
