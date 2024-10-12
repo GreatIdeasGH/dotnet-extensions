@@ -15,12 +15,12 @@ public class RepositoryFactory<TContext, TEntity, TDto> :
     {
     }
 
-    public virtual async Task<IEnumerable<TDto>> GetAllProjectToCodeGenAsync(
+    public virtual async ValueTask<IEnumerable<TDto>?> GetAllProjectToCodeGenAsync(
       Expression<Func<TEntity, TDto>> selector,
-      CancellationToken cancellationToken = default(CancellationToken))
+      CancellationToken cancellationToken = default)
     {
         RepositoryFactory<TContext, TEntity, TDto> repositoryFactory = this;
-        List<TDto> projectToCodeGenAsync = new List<TDto>();
+        List<TDto> projectToCodeGenAsync = new();
 
         if (selector != null)
             projectToCodeGenAsync = await repositoryFactory.DbContextFactory.CreateDbContext().Set<TEntity>()
@@ -29,26 +29,26 @@ public class RepositoryFactory<TContext, TEntity, TDto> :
         return projectToCodeGenAsync;
     }
 
-    public virtual async Task<IEnumerable<TDto>> GetAllProjectToAsync(
-      CancellationToken cancellationToken = default(CancellationToken))
+    public virtual async ValueTask<IEnumerable<TDto>?> GetAllProjectToAsync(
+      CancellationToken cancellationToken = default)
     {
         var _dbset = this.DbContextFactory.CreateDbContext().Set<TEntity>();
         return await _dbset.AsNoTracking().ProjectToType<TDto>().ToListAsync(cancellationToken);
     }
 
-    public virtual async Task<TDto> GetWithProjectToAsync(
+    public virtual async ValueTask<TDto?> GetWithProjectToAsync(
       Expression<Func<TDto, bool>> predicate,
-      CancellationToken cancellationToken = default(CancellationToken))
+      CancellationToken cancellationToken = default)
     {
         var _dbset = this.DbContextFactory.CreateDbContext().Set<TEntity>();
         return await _dbset.AsNoTracking().ProjectToType<TDto>()
           .FirstOrDefaultAsync(predicate, cancellationToken);
     }
 
-    public virtual async Task<TDto> GetWithProjectToCodeGenAsync(
+    public virtual async ValueTask<TDto?> GetWithProjectToCodeGenAsync(
       Expression<Func<TDto, bool>> predicate,
       Expression<Func<TEntity, TDto>> mapper,
-      CancellationToken cancellationToken = default(CancellationToken))
+      CancellationToken cancellationToken = default)
     {
         var _dbset = DbContextFactory.CreateDbContext().Set<TEntity>();
         return await _dbset.AsNoTracking().Select(mapper).FirstOrDefaultAsync(predicate, cancellationToken);
@@ -63,12 +63,12 @@ public class RepositoryFactory<TContext, TEntity, TDto> :
     }
 
 
-    public virtual Task<PagedList<TDto>> GetPagedDtoAsync(
+    public virtual async ValueTask<PagedList<TDto>> GetPagedDtoAsync(
       PagingParams pagingParams,
-      CancellationToken cancellationToken = default(CancellationToken))
+      CancellationToken cancellationToken = default)
     {
         var _dbset = DbContextFactory.CreateDbContext().Set<TEntity>();
-        return PagedList<TDto>
+        return await PagedList<TDto>
           .ToPagedListAsync(_dbset.AsNoTracking()
           .AsQueryable()
           .ProjectToType<TDto>(), pagingParams.PageIndex, pagingParams.PageSize, cancellationToken);

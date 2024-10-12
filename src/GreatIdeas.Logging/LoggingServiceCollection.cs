@@ -41,13 +41,13 @@ public static class LoggingServiceCollection
             // Use Seq
             if (loggingOptions.UseSeq)
             {
-                configuration.WriteTo.Seq(builder.Configuration["SeqConfiguration:Uri"]);
+                configuration.WriteTo.Seq(builder.Configuration["SeqConfiguration:Uri"]!);
             }
 
             // Use Elastic Search            
             if (loggingOptions.UseElasticSearch)
             {
-                configuration.WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(builder.Configuration["ElasticConfiguration:Uri"]))
+                configuration.WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(builder.Configuration["ElasticConfiguration:Uri"]!))
                 {
                     AutoRegisterTemplate = true,
                     NumberOfShards = 2,

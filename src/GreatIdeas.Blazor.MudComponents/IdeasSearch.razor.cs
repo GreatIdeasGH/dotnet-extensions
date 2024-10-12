@@ -1,27 +1,25 @@
-﻿using System;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 
-namespace GreatIdeas.Blazor.MudComponents
+namespace GreatIdeas.Blazor.MudComponents;
+
+public class IdeasSearchBase : IdeasComponentBase
 {
-    public class IdeasSearchBase: IdeasComponentBase
-    {
-        protected string SearchTerm { get; set; }
-        
-        [Parameter] public EventCallback<string> OnSearchChanged { get; set; }
-        
-        protected void SearchChanged()
-        {
-            // if (SearchTerm.Length > 1 && !string.IsNullOrWhiteSpace(SearchTerm))
-            {
-                OnSearchChanged.InvokeAsync(SearchTerm);
-            }
-        }
+    protected string? SearchTerm { get; set; }
 
-        protected virtual void ClearSearch()
+    [Parameter] public EventCallback<string> OnSearchChanged { get; set; }
+
+    protected void SearchChanged()
+    {
+        // if (SearchTerm.Length > 1 && !string.IsNullOrWhiteSpace(SearchTerm))
         {
-            SearchTerm = String.Empty;
             OnSearchChanged.InvokeAsync(SearchTerm);
-            
         }
+    }
+
+    protected virtual void ClearSearch()
+    {
+        SearchTerm = String.Empty;
+        OnSearchChanged.InvokeAsync(SearchTerm);
+
     }
 }

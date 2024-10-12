@@ -12,14 +12,14 @@
                 </div>
                 <div class="modal-body">
                     @if (ShowDeleteMessage)
-                    {
-                        @ConfirmationMessage
-                    }
+                {
+                    @ConfirmationMessage
+                }
                     @Template
                 </div>
                 @if (ShowFooter)
-                {
-                    <div class="modal-footer">
+            {
+                <div class="modal-footer">
                         <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal"
                                 @onclick="() => OnConfirmationChange(false)">
                             Cancel
@@ -29,7 +29,7 @@
                             @ActionButtonLabel
                         </button>
                     </div>
-                }
+            }
             </div>
         </div>
     </div>

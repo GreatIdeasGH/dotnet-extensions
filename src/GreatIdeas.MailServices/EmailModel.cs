@@ -1,10 +1,10 @@
 ﻿namespace GreatIdeas.MailServices;
 
-public class EmailModel
+public sealed record EmailModel
 {
-    public string? To { get; set; }
-    public string? FromAddress { get; set; }
+    public required string To { get; set; }
+    public required string FromAddress { get; set; }
     public string? FromName { get; set; }
-    public string? Subject { get; set; }
-    public string? Body { get; set; }
+    public required string Subject { get; set; }
+    public required string Body { get; set; }
 }

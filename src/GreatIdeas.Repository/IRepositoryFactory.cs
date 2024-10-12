@@ -1,91 +1,34 @@
-﻿using System.Linq.Expressions;
-using GreatIdeas.Extensions.Paging;
+﻿using GreatIdeas.Extensions.Paging;
 using GreatIdeas.Repository.Paging;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Expressions;
 
 namespace GreatIdeas.Repository;
 
-public interface IRepositoryFactory<TContext, TEntity, TDto> where TContext : DbContext where TEntity : class
+public interface IRepositoryFactory<TContext, TEntity, TDto> : IRepositoryFactory<TContext, TEntity>
+    where TContext : DbContext
+    where TEntity : class
 {
-    Task<IEnumerable<TDto>> GetAllProjectToCodeGenAsync(
+    ValueTask<IEnumerable<TDto>?> GetAllProjectToCodeGenAsync(
         Expression<Func<TEntity, TDto>> selector,
-        CancellationToken cancellationToken = default (CancellationToken));
+        CancellationToken cancellationToken = default);
 
-    Task<IEnumerable<TDto>> GetAllProjectToAsync(
-        CancellationToken cancellationToken = default (CancellationToken));
+    ValueTask<IEnumerable<TDto>?> GetAllProjectToAsync(
+        CancellationToken cancellationToken = default);
 
-    Task<TDto> GetWithProjectToAsync(
+    ValueTask<TDto?> GetWithProjectToAsync(
         Expression<Func<TDto, bool>> predicate,
-        CancellationToken cancellationToken = default (CancellationToken));
+        CancellationToken cancellationToken = default);
 
-    Task<TDto> GetWithProjectToCodeGenAsync(
+    ValueTask<TDto?> GetWithProjectToCodeGenAsync(
         Expression<Func<TDto, bool>> predicate,
         Expression<Func<TEntity, TDto>> mapper,
-        CancellationToken cancellationToken = default (CancellationToken));
+        CancellationToken cancellationToken = default);
 
     PagedList<TDto> GetPagedDto(PagingParams pagingParams);
 
-    Task<PagedList<TDto>> GetPagedDtoAsync(
+    ValueTask<PagedList<TDto>> GetPagedDtoAsync(
         PagingParams pagingParams,
-        CancellationToken cancellationToken = default (CancellationToken));
+        CancellationToken cancellationToken = default);
 
-    Task<PagedList<TEntity>> GetPagedListAsync(
-        PagingParams pagingParams,
-        Expression<Func<TEntity, bool>> predicate = null,
-        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
-        bool disableTracking = true,
-        CancellationToken cancellationToken = default (CancellationToken),
-        bool ignoreQueryFilters = false);
-
-    Task<IEnumerable<TEntity>> GetAllAsync(
-        CancellationToken cancellationToken = default (CancellationToken));
-
-    IQueryable<TEntity> GetAll(
-        Expression<Func<TEntity, bool>> predicate = null,
-        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
-        bool disableTracking = true,
-        bool ignoreQueryFilters = false);
-
-    ValueTask<TEntity> FindAsync(params object[] keyValues);
-
-    ValueTask<TEntity> FindAsync(
-        object[] keyValues,
-        CancellationToken cancellationToken);
-
-    Task<TEntity> GetFirstOrDefaultAsync(
-        Expression<Func<TEntity, bool>> predicate,
-        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
-        bool disableTracking = true,
-        bool ignoreQueryFilters = false,
-        CancellationToken cancellationToken = default (CancellationToken));
-
-    TEntity Insert(TEntity entity);
-
-    ValueTask<EntityEntry<TEntity>> InsertAsync(
-        TEntity entity,
-        CancellationToken cancellationToken = default (CancellationToken));
-
-    void InsertRange(List<TEntity> entities);
-
-    Task InsertRangeAsync(
-        List<TEntity> entities,
-        CancellationToken cancellationToken = default (CancellationToken));
-
-    void Update(TEntity entity);
-    void UpdateDto(TEntity entity);
-    void UpdateRange(List<TEntity> entities);
-    void Delete(TEntity entity);
-    void DeleteRange(List<TEntity> entities);
-
-    Task<bool> ExistsAsync(
-        Expression<Func<TEntity, bool>> selector = null,
-        CancellationToken cancellationToken = default (CancellationToken));
-
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default (CancellationToken));
-    void Dispose();
 }

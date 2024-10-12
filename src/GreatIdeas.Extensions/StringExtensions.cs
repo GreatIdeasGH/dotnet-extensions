@@ -5,7 +5,7 @@ namespace GreatIdeas.Extensions;
 public static class StringExtensions
 {
     /// <summary>
-    /// Generate AlphaNumeric characters with a speicified number of characters
+    /// Generate AlphaNumeric characters with a specified number of characters
     /// </summary>
     /// <param name="number">Number of characters</param>
     /// <returns>String</returns>
@@ -39,7 +39,7 @@ public static class StringExtensions
 
     public static string InsertSpaceBeforeUpperCase(this string inputString)
     {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new();
         char ch = char.MinValue;
         inputString = inputString.Trim();
         foreach (char c in inputString)
@@ -63,21 +63,7 @@ public static class StringExtensions
             return "th";
         }
 
-        if (converter.EndsWith('1'))
-        {
-            return "st";
-        }
-
-        if (converter.EndsWith('2'))
-        {
-            return "nd";
-        }
-
-        if (converter.EndsWith('3'))
-        {
-            return "rd";
-        }
-        return "th";
+        return ConvertToSuffix(converter);
     }
 
     public static string PositionSuffix(this int? value)
@@ -89,22 +75,9 @@ public static class StringExtensions
             return "th";
         }
 
-        if (converter.EndsWith('1'))
-        {
-            return "st";
-        }
-
-        if (converter.EndsWith('2'))
-        {
-            return "nd";
-        }
-
-        if (converter.EndsWith('3'))
-        {
-            return "rd";
-        }
-        return "th";
+        return ConvertToSuffix(converter);
     }
+
 
     public static string PositionSuffix(this string value)
     {
@@ -116,21 +89,7 @@ public static class StringExtensions
             return "th";
         }
 
-        if (converter.EndsWith('1'))
-        {
-            return "st";
-        }
-
-        if (converter.EndsWith('2'))
-        {
-            return "nd";
-        }
-
-        if (converter.EndsWith('3'))
-        {
-            return "rd";
-        }
-        return "th";
+        return ConvertToSuffix(converter);
     }
 
     #endregion
@@ -180,5 +139,24 @@ public static class StringExtensions
         readable = (readable / 1024);
         // Return formatted number with suffix
         return readable.ToString("0.### ") + suffix;
+    }
+
+    private static string ConvertToSuffix(string? converter)
+    {
+        if (converter!.EndsWith('1'))
+        {
+            return "st";
+        }
+
+        if (converter.EndsWith('2'))
+        {
+            return "nd";
+        }
+
+        if (converter.EndsWith('3'))
+        {
+            return "rd";
+        }
+        return "th";
     }
 }

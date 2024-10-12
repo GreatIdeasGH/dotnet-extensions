@@ -3,7 +3,7 @@
 public class FileExtensions
 {
     /// <summary>
-    /// Returns a fileinfo with the full path of the requested file
+    /// Returns a FileInfo with the full path of the requested file
     /// </summary>
     /// <param name="directory">A subdirectory</param>
     /// <param name="file"></param>
@@ -11,11 +11,11 @@ public class FileExtensions
     /// <returns></returns>
     public static FileInfo GetFileInfo(string directory, string file, string endsWith)
     {
-        var rootDir = GetRootDirectory(endsWith).FullName;
+        var rootDir = GetRootDirectory(endsWith)!.FullName;
         return new FileInfo(Path.Combine(rootDir, directory, file));
     }
 
-    private static DirectoryInfo GetRootDirectory(string endWith)
+    private static DirectoryInfo? GetRootDirectory(string endWith)
     {
         var currentDir = AppDomain.CurrentDomain.BaseDirectory;
         while (currentDir != null && !currentDir.EndsWith(endWith))
@@ -25,9 +25,9 @@ public class FileExtensions
         return new DirectoryInfo(currentDir!).Parent;
     }
 
-    public static DirectoryInfo GetSubDirectory(string directory, string subDirectory, string endsWith)
+    public static DirectoryInfo? GetSubDirectory(string directory, string subDirectory, string endsWith)
     {
-        var currentDir = GetRootDirectory(endsWith).FullName;
+        var currentDir = GetRootDirectory(endsWith)!.FullName;
         return new DirectoryInfo(Path.Combine(currentDir, directory, subDirectory));
     }
 }

@@ -6,11 +6,11 @@ public class PagingParams
     private int _pageIndex = 1;
     private int _pageSize = 10;
 
-    public string OrderBy { get; set; }
+    public string? OrderBy { get; set; }
 
-    public string Search { get; set; }
+    public string? Search { get; set; }
 
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     public DateTime? StartDate { get; set; }
 

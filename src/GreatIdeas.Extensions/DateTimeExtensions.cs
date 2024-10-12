@@ -10,7 +10,7 @@ public static class DateTimeExtensions
     /// <returns></returns>
     public static DateOnly GenerateRandomDateOnly(DateOnly startDate, DateOnly endDate)
     {
-        Random random = new Random();
+        Random random = new();
         int range;
         if (startDate > endDate)
         {
@@ -34,7 +34,7 @@ public static class DateTimeExtensions
     /// <returns></returns>
     public static DateTime GenerateRandomDateTime(DateTime startDate, DateTime endDate)
     {
-        Random random = new Random();
+        Random random = new();
         int range;
         if (startDate > endDate)
         {
@@ -89,43 +89,43 @@ public static class DateTimeExtensions
         return positionalDate;
     }
 
-    public static string PositionDate(DateTime value)
+    public static string PositionSuffix(DateTime value)
     {
         var converter = value!.Day.ToString();
         string position;
-        string positionalDate;
+        string suffix;
 
         if (value.Day is 11 or 12 or 13)
         {
             position = $"th";
-            positionalDate = GetDate(value, position);
-            return positionalDate;
+            suffix = GetDate(value, position);
+            return suffix;
         }
 
         if (converter.EndsWith('1'))
         {
             position = $"st";
-            positionalDate = GetDate(value, position);
-            return positionalDate;
+            suffix = GetDate(value, position);
+            return suffix;
         }
 
         if (converter.EndsWith('2'))
         {
             position = $"nd";
-            positionalDate = GetDate(value, position);
-            return positionalDate;
+            suffix = GetDate(value, position);
+            return suffix;
         }
 
         if (converter.EndsWith('3'))
         {
             position = $"rd";
-            positionalDate = GetDate(value, position);
-            return positionalDate;
+            suffix = GetDate(value, position);
+            return suffix;
         }
 
         position = $"th";
-        positionalDate = GetDate(value, position);
-        return positionalDate;
+        suffix = GetDate(value, position);
+        return suffix;
     }
 
     private static string GetDate(DateTime? date, string position)

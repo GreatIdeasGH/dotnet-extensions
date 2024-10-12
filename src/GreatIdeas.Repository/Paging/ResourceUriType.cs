@@ -1,9 +1,8 @@
-﻿namespace GreatIdeas.Repository.Paging
+﻿namespace GreatIdeas.Repository.Paging;
+
+public enum ResourceUriType
 {
-    public enum ResourceUriType
-    {
-        PreviousPage,
-        NextPage,
-        CurrentPage
-    }
+    PreviousPage,
+    NextPage,
+    CurrentPage
 }

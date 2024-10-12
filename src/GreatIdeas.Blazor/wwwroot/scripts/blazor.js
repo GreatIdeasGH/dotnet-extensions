@@ -98,7 +98,7 @@ blazorInterop.registerOnlineHandler = function (dotNetObjectRef) {
 }
 
 // Anchor Navigation for blazor
-function BlazorScrollToId(id) {
+function ScrollToId(id) {
     const element = document.getElementById(id);
     if (element instanceof HTMLElement) {
         element.scrollIntoView({

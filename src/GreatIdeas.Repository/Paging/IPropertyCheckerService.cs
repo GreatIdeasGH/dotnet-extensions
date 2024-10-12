@@ -1,7 +1,6 @@
-﻿namespace GreatIdeas.Repository.Paging
+﻿namespace GreatIdeas.Repository.Paging;
+
+public interface IPropertyCheckerService
 {
-    public interface IPropertyCheckerService
-    {
-        bool TypeHasProperties<T>(string fields);
-    }
+    bool TypeHasProperties<T>(string fields);
 }

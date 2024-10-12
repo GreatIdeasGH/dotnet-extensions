@@ -1,6 +1,6 @@
 ﻿using SendGrid;
 
-namespace GreatIdeas.MailServices;
+namespace GreatIdeas.MailServices.SendGrid;
 
 public interface ISendGridService
 {

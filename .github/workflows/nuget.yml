@@ -4,37 +4,36 @@ on:
   push:
     #branches: [ master ]
     tags:
-    - 'v*'
+      - "v*"
 
 env:
-  PROJECT_PATH: src/GreatIdeas.Logging/GreatIdeas.Logging.csproj
-  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}\nuget
+  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}\packages
+  PROJECT_PATH: GreatIdeasExtensions.sln
 
 jobs:
   deploy:
     name: Deploy and Push to Nuget
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
-        
-    - name: Restore dependencies
-      run: dotnet restore ${{ env.PROJECT_PATH }}
-      
-    - name: Build Project
-      run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+      - uses: actions/checkout@v3
 
-    - name: Get Version
-      id: version
-      uses: battila7/get-version-action@v2
-      
-    - name: Pack Project
-      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 8.0.x
 
-    - name: Push to Nuget
-      run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
-      
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.PROJECT_PATH }}
+
+      - name: Build Project
+        run: dotnet build --tl --configuration Release
+
+      - name: Get Version
+        id: version
+        uses: battila7/get-version-action@v2
+
+      # - name: Pack Project
+      #   run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+
+      - name: Push to Nuget
+        run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate

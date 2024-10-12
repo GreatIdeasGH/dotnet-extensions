@@ -9,7 +9,7 @@ public class DateTimeTests
     public void DatePositionalSuffix()
     {
         var birthDate = new DateTime(2003, 1, 3);
-        var positionalSuffix = DateTimeExtensions.PositionDate(birthDate);
+        var positionalSuffix = DateTimeExtensions.PositionSuffix(birthDate);
 
         Assert.Equal("3rd January, 2003", positionalSuffix);
     }
