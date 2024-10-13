@@ -24,18 +24,18 @@ public class SendGridService : ISendGridService
     /// </summary>
     /// <param name="emailModel"><see cref="EmailModel"/></param>
     /// <returns>SendGrid <see cref="Response"/></returns>
-    public async Task<Response> SendEmailAsync(EmailModel emailModel)
+    public async Task<Response> SendEmailAsync(SendGridEmailModel emailModel)
     {
         var response = await Execute(emailModel);
         return response;
     }
 
-    private async Task<Response> Execute(EmailModel emailModel)
+    private async Task<Response> Execute(SendGridEmailModel emailModel)
     {
         var client = new SendGridClient(_sendGridOptions.ApiKey);
         var msg = new SendGridMessage()
         {
-            From = new EmailAddress(emailModel.FromAddress),
+            From = new EmailAddress(emailModel.From),
             Subject = emailModel.Subject,
             PlainTextContent = emailModel.Body,
             HtmlContent = emailModel.Body

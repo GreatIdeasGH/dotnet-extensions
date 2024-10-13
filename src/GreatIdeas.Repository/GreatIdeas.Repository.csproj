@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions/tree/master/src/GreatIdeas.Repository</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions/tree/master/src/GreatIdeas.Repository</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Mapster" />

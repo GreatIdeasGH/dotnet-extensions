@@ -5,17 +5,18 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<Copyright>Copyright © GreatIdeas Business Solutions</Copyright>
 		<Features>strict</Features>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<OutputPath>$(RepoRootPath)packages/</OutputPath>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<IncludeSymbols>True</IncludeSymbols>
-		<Version>1.0.0-rc.1</Version>		
+		<Version>3.0.0-beta2</Version>		
 	</PropertyGroup>
 	
 	<ItemGroup>
 	</ItemGroup>
-	<!--<ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-	</ItemGroup>-->
+	</ItemGroup>
 </Project>

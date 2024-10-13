@@ -1,4 +1,5 @@
-﻿using GreatIdeas.MailServices;
+﻿using ExtensionSamples;
+using GreatIdeas.MailServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,10 +11,17 @@ builder.Configuration.AddUserSecrets<Program>();
 
 builder.Services.AddMsGraphMailService(builder.Configuration);
 builder.Services.AddScoped<EmailSending>();
+builder.Services.AddScoped<EmailNotifications>();
 
 var host = builder.Build();
 
 var sendingService = host.Services.GetRequiredService<EmailSending>();
+var notificationService = host.Services.GetRequiredService<EmailNotifications>();
+
+// Send email as a user
 await sendingService.SendEmailWithGraph();
+
+// Send notification to a user
+//notificationService.SendNotification();
 
 host.Start();

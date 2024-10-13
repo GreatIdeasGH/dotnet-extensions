@@ -35,5 +35,9 @@ jobs:
       - name: Pack Project
         run: dotnet pack --no-restore --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
 
+      - name: Remove NuGet Packages with name Sample
+        run: |
+          find ${{ env.PACKAGE_OUTPUT_DIRECTORY }} -type f -name '*Sample*' -exec rm -f {} +
+
       - name: Push to Nuget
         run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate

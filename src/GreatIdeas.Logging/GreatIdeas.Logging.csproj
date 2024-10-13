@@ -2,14 +2,13 @@
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.1.1</Version>
     <Description>This package simplifies the integration of Serilog with persistance stores such as Seq, Elastic Search and Kibana, and Application Insights.</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>Serilog; ElasticSearch; ApplicationInsights; Seq; logging; GreatIdeas</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeasExtensions</RepositoryUrl>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Serilog.AspNetCore" />

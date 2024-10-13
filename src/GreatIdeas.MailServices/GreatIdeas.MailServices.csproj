@@ -2,9 +2,8 @@
 	<PropertyGroup>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>1.0.2</Version>
 		<Description>Email services using MS Graph API and SendGrid API</Description>		
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageTags>Microsoft-Graph; SendGrid; Email; GreatIdeas</PackageTags>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
