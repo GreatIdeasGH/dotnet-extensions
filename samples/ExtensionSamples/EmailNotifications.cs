@@ -2,6 +2,7 @@
 using System.Web;
 using Azure;
 using Azure.Communication.Email;
+using GreatIdeas.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -14,17 +15,6 @@ public enum ExceptionNotifications
     SystemMalfunctionNotice,
     UrgentBugNotification,
     ApplicationCrashAlert,
-}
-
-public static partial class StringExtensions
-{
-    public static string SplitCamelCase(this string str)
-    {
-        return MyRegex().Replace(str, " $1").Trim();
-    }
-
-    [GeneratedRegex("([A-Z])", RegexOptions.Compiled)]
-    private static partial Regex MyRegex();
 }
 
 internal class EmailNotifications(ILogger<EmailNotifications> logger, IConfiguration configuration)

@@ -18,6 +18,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\src\GreatIdeas.MailServices\GreatIdeas.MailServices.csproj" />
+	  <ProjectReference Include="..\..\src\GreatIdeas.Extensions\GreatIdeas.Extensions.csproj" />
 	</ItemGroup>
 
 

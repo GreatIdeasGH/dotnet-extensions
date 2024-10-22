@@ -9,7 +9,7 @@
 		<!-- <OutputPath>$(RepoRootPath)packages/</OutputPath> -->
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<IncludeSymbols>True</IncludeSymbols>
-		<Version>3.0.0-beta.3</Version>		
+		<Version>3.0.0-beta.4</Version>		
 	</PropertyGroup>
 	
 	<ItemGroup>

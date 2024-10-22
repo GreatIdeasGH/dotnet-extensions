@@ -22,8 +22,8 @@ public abstract class RepositoryFactory<TContext, TEntity>
     {
         DbContextFactory =
             dbContextFactory ?? throw new ArgumentNullException(nameof(dbContextFactory));
-        DbSet = dbContextFactory.CreateDbContext().Set<TEntity>();
         DbContext = dbContextFactory.CreateDbContext();
+        DbSet = DbContext.Set<TEntity>();
     }
 
     public virtual async ValueTask<PagedList<TEntity>> GetPagedListAsync(

@@ -1,8 +1,9 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 
 namespace GreatIdeas.Extensions;
 
-public static class StringExtensions
+public static partial class StringExtensions
 {
     /// <summary>
     /// Generate AlphaNumeric characters with a specified number of characters
@@ -15,26 +16,24 @@ public static class StringExtensions
         var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         var random = new Random();
         var result = new string(
-            Enumerable.Repeat(chars, number)
-                .Select(s => s[random.Next(s.Length)])
-                .ToArray());
+            Enumerable.Repeat(chars, number).Select(s => s[random.Next(s.Length)]).ToArray()
+        );
 
         return result;
     }
 
     public static string GetInitials(this string text, string separator)
     {
-        string[] output = text.Split(' ');
-        string initials = string.Empty;
+        StringBuilder initials = new();
 
         var firstChar = text.Split(' ').Select(s => s[0]);
 
         foreach (var c in firstChar)
         {
-            initials += c + separator;
+            initials.Append(c + separator);
         }
 
-        return initials.Trim();
+        return initials.ToString().Trim().ToUpper();
     }
 
     public static string InsertSpaceBeforeUpperCase(this string inputString)
@@ -77,7 +76,6 @@ public static class StringExtensions
 
         return ConvertToSuffix(converter);
     }
-
 
     public static string PositionSuffix(this string value)
     {
@@ -140,6 +138,22 @@ public static class StringExtensions
         // Return formatted number with suffix
         return readable.ToString("0.### ") + suffix;
     }
+
+    public static string GetAbsPathFromUrl(this string url)
+    {
+        Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out var newPath);
+
+        var absolutePath = newPath!.AbsolutePath;
+        return absolutePath.Remove(absolutePath.IndexOf('/'), 1);
+    }
+
+    public static string SplitCamelCase(this string text)
+    {
+        return UpperCase().Replace(text, " $1").Trim();
+    }
+
+    [GeneratedRegex("([A-Z])", RegexOptions.Compiled)]
+    public static partial Regex UpperCase();
 
     private static string ConvertToSuffix(string? converter)
     {
