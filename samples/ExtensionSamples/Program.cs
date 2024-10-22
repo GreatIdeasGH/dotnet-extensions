@@ -19,9 +19,16 @@ var sendingService = host.Services.GetRequiredService<EmailSending>();
 var notificationService = host.Services.GetRequiredService<EmailNotifications>();
 
 // Send email as a user
-await sendingService.SendEmailWithGraph();
+// await sendingService.SendEmailWithGraph();
 
 // Send notification to a user
-//notificationService.SendNotification();
+try
+{
+    throw new ArgumentNullException("");
+}
+catch (Exception exception)
+{
+    notificationService.SendNotification(ExceptionNotifications.UrgentBugNotification, exception);
+}
 
 host.Start();

@@ -23,18 +23,16 @@ public static class IQueryableExtensions
         {
             string str2 = str1.Trim();
             bool flag = str2.EndsWith(" desc");
-            int startIndex = str2.IndexOf(" ");
+            int startIndex = str2.AsSpan().IndexOf(" ");
             string key = startIndex == -1 ? str2 : str2.Remove(startIndex);
-            PropertyMappingValue propertyMappingValue = mappingDictionary.ContainsKey(key) 
-                ? mappingDictionary[key] 
+            PropertyMappingValue propertyMappingValue = mappingDictionary.TryGetValue(key, out var value) 
+                ? value 
                 : throw new ArgumentException("Key mapping for " + key + " is missing");
             
             if (propertyMappingValue == null)
                 throw new ArgumentNullException(nameof(propertyMappingValue), "Cannot find mapping for " + key);
             
-            
-            
-            foreach (string destinationProperty in propertyMappingValue.DestinationProperties)
+            foreach (var destinationProperty in propertyMappingValue.DestinationProperties)
             {
                 if (propertyMappingValue.Revert)
                     flag = !flag;

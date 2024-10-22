@@ -2,14 +2,14 @@
 	<PropertyGroup>
 		<RepoRootPath>$(MSBuildThisFileDirectory)</RepoRootPath>
 		<Authors>Gerald Maale; GreatIdeas Software LLC</Authors>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
 		<Copyright>Copyright © GreatIdeas Business Solutions</Copyright>
 		<Features>strict</Features>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<OutputPath>$(RepoRootPath)packages/</OutputPath>
+		<!-- <OutputPath>$(RepoRootPath)packages/</OutputPath> -->
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<IncludeSymbols>True</IncludeSymbols>
-		<Version>3.0.0-beta2</Version>		
+		<Version>3.0.0-beta.3</Version>		
 	</PropertyGroup>
 	
 	<ItemGroup>

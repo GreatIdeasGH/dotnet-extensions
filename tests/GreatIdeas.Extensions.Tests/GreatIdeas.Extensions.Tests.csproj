@@ -5,6 +5,7 @@
     <UserSecretsId>80e56f87-3b99-4b91-a83f-f7cbedfa4251</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AutoFixture" />
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
@@ -26,5 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\GreatIdeas.Extensions\GreatIdeas.Extensions.csproj" />
     <ProjectReference Include="..\..\src\GreatIdeas.MailServices\GreatIdeas.MailServices.csproj" />
+    <ProjectReference Include="..\..\src\GreatIdeas.PagedList\src\X.PagedList.EF\GreatIdeas.PagedList.EF.csproj" />
   </ItemGroup>
 </Project>

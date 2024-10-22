@@ -6,7 +6,7 @@
 public class ApiResult
 {
     public bool IsSuccessful { get; set; }
-    public string? Message { get; set; }
+    public string Message { get; set; } = string.Empty;
 }
 
 /// <summary>
@@ -15,7 +15,7 @@ public class ApiResult
 /// <typeparam name="T">Type to return</typeparam>
 public class ApiResults<T> : ApiResult
 {
-    public IEnumerable<T>? Results { get; set; }
+    public IEnumerable<T> Results { get; set; } = [];
 }
 
 /// <summary>
