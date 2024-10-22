@@ -1,10 +1,9 @@
 ﻿using AutoFixture;
-using GreatIdeas.PagedList;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GreatIdeas.Extensions.Tests.PagedList;
+namespace GreatIdeas.PagedList.Tests;
 
 public class AsyncPagedListExtensionsTheories
 {

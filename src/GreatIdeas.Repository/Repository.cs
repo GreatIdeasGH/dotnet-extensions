@@ -15,7 +15,7 @@ public abstract class RepositoryFactory<TContext, TEntity>
 {
     protected readonly IDbContextFactory<TContext> DbContextFactory;
 
-    protected TContext DbContext { get; set; } = default!;
+    protected TContext DbContext { get; set; }
     protected DbSet<TEntity> DbSet { get; set; }
 
     public RepositoryFactory(IDbContextFactory<TContext> dbContextFactory)

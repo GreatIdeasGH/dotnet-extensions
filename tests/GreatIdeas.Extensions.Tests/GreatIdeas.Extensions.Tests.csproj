@@ -27,6 +27,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\GreatIdeas.Extensions\GreatIdeas.Extensions.csproj" />
     <ProjectReference Include="..\..\src\GreatIdeas.MailServices\GreatIdeas.MailServices.csproj" />
-    <ProjectReference Include="..\..\src\GreatIdeas.PagedList\src\X.PagedList.EF\GreatIdeas.PagedList.EF.csproj" />
   </ItemGroup>
 </Project>

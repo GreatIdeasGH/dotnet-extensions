@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using GreatIdeas.PagedList;
 using Xunit;
 
-namespace GreatIdeas.Extensions.Tests.PagedList;
+namespace GreatIdeas.PagedList.Tests;
 
 public class PagedListFacts
 {
@@ -47,7 +46,7 @@ public class PagedListFacts
     }
 
     [Fact]
-    public void Argument_out_of_range()
+    public async Task Argument_out_of_range()
     {
         var queryable = new List<object>().AsQueryable();
         var list = queryable.ToList();
@@ -55,6 +54,7 @@ public class PagedListFacts
 
         Assert.NotNull(pagedList);
     }
+
 
     [Fact]
     public void Split_Works()
@@ -114,7 +114,7 @@ public class PagedListFacts
         var pagedList = data.ToPagedList(2, 3);
 
         //assert
-        Assert.Empty(pagedList);
+        Assert.Equal(0, pagedList.Count);
     }
 
     // [Fact]
@@ -225,6 +225,14 @@ public class PagedListFacts
 
         //assert
         Assert.Equal(2, pagedList.Count);
+
+        //### related test below
+
+        //act
+        pagedList = data.ToPagedList(3, 2);
+
+        //assert
+        Assert.Equal(1, pagedList.Count);
     }
 
     [Fact]
@@ -352,6 +360,7 @@ public class PagedListFacts
         Assert.Equal(8, pagedList.LastItemOnPage);
     }
 
+
     [Theory]
     [InlineData(new[] { 1, 2, 3 }, 1, 1, false, true)]
     [InlineData(new[] { 1, 2, 3 }, 2, 1, true, true)]
@@ -359,13 +368,8 @@ public class PagedListFacts
     [InlineData(new[] { 1, 2, 3 }, 1, 3, false, false)]
     [InlineData(new[] { 1, 2, 3 }, 2, 3, false, false)]
     [InlineData(new int[] { }, 1, 3, false, false)]
-    public void Theory_HasPreviousPage_And_HasNextPage_Are_Correct(
-        int[] integers,
-        int pageNumber,
-        int pageSize,
-        bool expectedHasPrevious,
-        bool expectedHasNext
-    )
+    public void Theory_HasPreviousPage_And_HasNextPage_Are_Correct(int[] integers, int pageNumber, int pageSize,
+        bool expectedHasPrevious, bool expectedHasNext)
     {
         //arrange
         var data = integers;
@@ -385,13 +389,8 @@ public class PagedListFacts
     [InlineData(new[] { 1, 2, 3 }, 1, 3, true, true)] // Page 1 of 1
     [InlineData(new[] { 1, 2, 3 }, 2, 3, false, false)] // Page 2 of 1
     [InlineData(new int[] { }, 1, 3, false, false)] // Page 1 of 0
-    public void Theory_IsFirstPage_And_IsLastPage_Are_Correct(
-        int[] integers,
-        int pageNumber,
-        int pageSize,
-        bool expectedIsFirstPage,
-        bool expectedIsLastPage
-    )
+    public void Theory_IsFirstPage_And_IsLastPage_Are_Correct(int[] integers, int pageNumber, int pageSize,
+        bool expectedIsFirstPage, bool expectedIsLastPage)
     {
         //arrange
         var data = integers;
@@ -443,13 +442,7 @@ public class PagedListFacts
     [InlineData(new[] { 1, 2, 3, 4, 5 }, 3, 2, 5, 5)]
     [InlineData(new[] { 1, 2, 3, 4, 5 }, 4, 2, 0, 0)]
     [InlineData(new int[] { }, 1, 2, 0, 0)]
-    public void Theory_FirstItemOnPage_And_LastItemOnPage_Are_Correct(
-        int[] integers,
-        int pageNumber,
-        int pageSize,
-        int expectedFirstItemOnPage,
-        int expectedLastItemOnPage
-    )
+    public void Theory_FirstItemOnPage_And_LastItemOnPage_Are_Correct(int[] integers, int pageNumber, int pageSize, int expectedFirstItemOnPage, int expectedLastItemOnPage)
     {
         //arrange
         var data = integers;

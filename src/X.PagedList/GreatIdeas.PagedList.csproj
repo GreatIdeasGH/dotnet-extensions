@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Authors>Copyright Troy Goode, Andrew Gubskiy, Gerald Maale</Authors>
+        <Company>Ukrainian .NET Developer Community</Company>
+        <PackageLicenseUrl>https://github.com/GreatIdeasGH/GreatIdeas.PagedList/blob/master/LICENSE</PackageLicenseUrl>
+        <PackageProjectUrl>https://github.com/GreatIdeasGH/GreatIdeas.PagedList</PackageProjectUrl>
+        <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
+        <RepositoryUrl>https://github.com/GreatIdeasGH/GreatIdeas.PagedList.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
+        <Description>Library for easily paging through any IEnumerable/IQueryable in .NET and .NET Core</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" />
+    </ItemGroup>
+
+
+</Project>

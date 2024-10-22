@@ -2,7 +2,6 @@
   <PropertyGroup>    
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>2.3.0</Version>
     <Description>Repository pattern for various actions including paginations with EntityframeworkCore</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>AspNetCore, Mapster, EntityframeworkCore, Pagination</PackageTags>
