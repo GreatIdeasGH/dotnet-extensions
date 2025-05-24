@@ -28,7 +28,7 @@ try
 }
 catch (Exception exception)
 {
-    notificationService.SendNotification(ExceptionNotifications.UrgentBugNotification, exception);
+    notificationService.Send(ExceptionNotifications.UrgentBugNotification, exception);
 }
 
 host.Start();

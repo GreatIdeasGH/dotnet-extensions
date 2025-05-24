@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using System.Web;
+﻿using System.Web;
 using Azure;
 using Azure.Communication.Email;
 using GreatIdeas.Extensions;
@@ -17,9 +16,36 @@ public enum ExceptionNotifications
     ApplicationCrashAlert,
 }
 
-internal class EmailNotifications(ILogger<EmailNotifications> logger, IConfiguration configuration)
+public class EmailNotifications(ILogger<EmailNotifications> logger, IConfiguration configuration)
 {
-    public void SendNotification(ExceptionNotifications subject, Exception exception)
+    /// <summary>
+    /// Sends an email notification containing detailed exception information using Azure Communication Services.
+    /// </summary>
+    /// <param name="subject">The type of exception notification to be sent.</param>
+    /// <param name="exception">The exception details to be included in the notification.</param>
+    /// <remarks>
+    /// The email includes system information such as:
+    /// - Current date and time
+    /// - Platform details
+    /// - Environment information
+    /// - Operating system details
+    /// - Machine name
+    /// - Exception message and inner exception details
+    /// Configuration requirements in appsettings.json:
+    /// <code>
+    /// {
+    ///   "ACS": {
+    ///     "ConnectionString": "endpoint=https://your-acs.communication.azure.com/;accesskey=your-key",
+    ///     "Sender": "DoNotReply@your-domain.com",
+    ///     "Recipient": "admin@your-domain.com"
+    ///   }
+    /// }
+    /// </code>
+    /// </remarks>
+    /// <exception cref="RequestFailedException">
+    /// Thrown when the email sending operation fails through Azure Communication Services.
+    /// </exception>
+    public async ValueTask Send(ExceptionNotifications subject, Exception exception)
     {
         // Azure Comm Service configuration (ACS)
         string connectionString = configuration["ACS:ConnectionString"]!;
@@ -60,7 +86,7 @@ internal class EmailNotifications(ILogger<EmailNotifications> logger, IConfigura
                 recipients: new EmailRecipients(new List<EmailAddress> { new(recipient) })
             );
 
-            EmailSendOperation emailSendOperation = emailClient.Send(
+            EmailSendOperation emailSendOperation = await emailClient.SendAsync(
                 WaitUntil.Completed,
                 emailMessage
             );
@@ -73,9 +99,7 @@ internal class EmailNotifications(ILogger<EmailNotifications> logger, IConfigura
         catch (RequestFailedException ex)
         {
             /// OperationID is contained in the exception message and can be used for troubleshooting purposes
-            logger.LogError(
-                $"Email send operation failed with error code: {ex.ErrorCode}, message: {ex.Message}"
-            );
+            logger.LogCritical(ex, "Email send operation failed.");
         }
     }
 }

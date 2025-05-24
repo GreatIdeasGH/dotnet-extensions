@@ -6,7 +6,7 @@ namespace GreatIdeas.Blazor.MudComponents;
 public class IdeasDialogBase : ComponentBase
 {
     [CascadingParameter]
-    MudDialogInstance MudDialog { get; set; } = default!;
+    IMudDialogInstance MudDialog { get; set; } = default!;
 
     [Parameter]
     public string? ContentText { get; set; }

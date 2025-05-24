@@ -5,7 +5,7 @@
     <Authors>Chris Sainty; Gerald Maale</Authors>
     <Company>
     </Company>
-    <Copyright>Copyright 2020 (c) Chris Sainty. All rights reserved.</Copyright>
+    <Copyright>Copyright 2025 (c) Chris Sainty. All rights reserved.</Copyright>
     <Description>A library for using FluentValidation with Blazor</Description>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
